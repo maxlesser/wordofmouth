@@ -40,7 +40,7 @@ function show_js(request, response) {
 
 function show_css(request, response) {
   sys.puts("Serving main page");
-  response.writeHead(200, {'Content-Type': 'Stylesheet'});
+  response.writeHead(200, {'Content-Type': 'text/css'});
   fs.readFile("main.css", function(err, text){
     response.end(text);
   });
