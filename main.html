@@ -1,0 +1,50 @@
+<!doctype html>
+<html ng-app="myApp">
+	<head>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.7.0.js"></script>
+		<link rel="stylesheet" href="main.css">
+		<script type="text/javascript" src="/main.js"></script>
+	</head>
+	<body>
+		<h2>Todo</h2>
+		<div ng-controller="TodoCtrl">
+			<span>{{remaining()}} of {{todos.length}} remaining</span>
+				[ <a href="" ng-click="archive()">archive</a> ]
+				<ul class="unstyled">
+					<li ng-repeat="todo in todos">
+						<input type="checkbox" ng-model="todo.done">
+						<span class="done-{{todo.done}}">{{todo.text}}</span>
+					</li>
+				</ul>
+				<form ng-submit="addTodo()">
+				<input type="text" ng-model="todoText"  size="30"
+				   placeholder="add new todo here">
+				<input class="btn-primary" type="submit" value="add">
+			</form>
+		</div>
+		<div ng-controller="ModalDemoCtrl">
+		    <script type="text/ng-template" id="myModalContent.html">
+		        <div class="modal-header">
+		            <h3>Im a modal!</h3>
+		        </div>
+		        <div class="modal-body">
+		            <ul>
+		                <li ng-repeat="item in items">
+		                    <a ng-click="selected.item = item">{{ item }}</a>
+		                </li>
+		            </ul>
+		            Selected: <b>{{ selected.item }}</b>
+		        </div>
+		        <div class="modal-footer">
+		            <button class="btn btn-primary" ng-click="ok()">OK</button>
+		            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+		        </div>
+		    </script>
+
+		    <button class="btn" ng-click="open()">Open me!</button>
+		    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+		</div>
+	</body>
+</html>
