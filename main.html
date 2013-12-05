@@ -33,7 +33,9 @@
 					<div class="row">
 						<div class="col-xs-6 col-md-3" ng-repeat="event in events">
 					    	<div class="thumbnail">
-					    		<img src="{{event.imageLocation}}"/>
+					    		<a class="thumbnail" href='#'>
+					    			<img src="{{event.imageLocation}}"/>
+					    		</a>
 								<div ng-repeat="category in event.categories" style='background-color:{{category}}; width:100%; height:5px;'/>
 					    	</div>
 						</div>
