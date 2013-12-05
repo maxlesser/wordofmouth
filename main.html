@@ -2,12 +2,41 @@
 <html ng-app="myApp">
 	<head>
 		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-		<link href="/main.css" rel="stylesheet">
+		<link href="main.css" rel="stylesheet">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
     	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.7.0.js"></script>
-		<script type="text/javascript" src="/main.js"></script>
+		<script type="text/javascript" src="main.js"></script>
 	</head>
 	<body>
+		<div ng-controller="WomCon">
+			<div id='header-div'>
+				<h1>Click here to post an event</h1>
+				<button id='shout-button'>Shout!</button>
+				<h2>Word of Mouth</h2>
+			</div>
+
+			<!-- add search bar here !-->
+
+			<div id='sort-buttons-div'>
+				<button id='theater' ng-click="theater()">Theater</button>
+				<button id='talks'>Theater</button>
+				<button id='social'>Theater</button>
+				<button id='music'>Theater</button>
+				<button id='sports'>Theater</button>
+			</div>
+
+			<div id='events-div'>
+				<h1>Today</h1>
+
+				<li ng-repeat="event in events">
+					<img src="{{event.imageLocation}}"/>
+					<div ng-repeat="category in event.categories" style='background-color:{{category}}; width:300px; height:5px;'/>
+				</li>
+			</div>
+		</div>
+
+
+		<!--
 		<h2>Todo</h2>
 		<div ng-controller="TodoCtrl">
 			<span>{{remaining()}} of {{todos.length}} remaining</span>
@@ -50,5 +79,6 @@
 		    <button class="btn" ng-click="open()">Open me!</button>
 		    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
 		</div>
+		!-->
 	</body>
 </html>
