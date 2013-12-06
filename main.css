@@ -18,6 +18,14 @@
 	margin: 0px;
 }
 
+.event-overlay {
+	background: none repeat scroll 0 0 #000;
+    opacity: 0.7;
+    top:0;
+    left:0;
+    position: absolute;
+}
+
 .event-modal {
 
 }

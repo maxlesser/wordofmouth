@@ -3,15 +3,23 @@ angular.module('myApp', ['ui.bootstrap']);
 function WomCon($scope) {
 
   $scope.events = [
-    {imageLocation:'https://lh4.googleusercontent.com/-Yo0xPhkpEkw/AAAAAAAAAAI/AAAAAAAAABg/1_d4z5kPZ8c/w48-c-h48/photo.jpg', categories:{color:'#ff9900'}},
-    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000'}},
-    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000'}},
-    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000', social:'#00FFFF', theater:'#00FF00'}},
-    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000', social:'#00FFFF'}}
+    {imageLocation:'https://lh4.googleusercontent.com/-Yo0xPhkpEkw/AAAAAAAAAAI/AAAAAAAAABg/1_d4z5kPZ8c/w48-c-h48/photo.jpg', categories:{color:'#ff9900'}, overlay:"false"},
+    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000'}, overlay:"false"},
+    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000'}, overlay:"false"},
+    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000', social:'#00FFFF', theater:'#00FF00'}, overlay:"false"},
+    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000', social:'#00FFFF'}, overlay:"false"}
     ];
 
   $scope.theater = function() {
     $scope.events[0].categories['color'] = '#FF0000';
+  }
+
+  $scope.mouseenter = function(index) {
+  	$scope.events[index].overlay = "true";
+  }
+
+  $scope.mouseleave = function(index) {
+  	$scope.events[index].overlay = "false";
   }
 }
 
