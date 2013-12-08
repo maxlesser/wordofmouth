@@ -35,9 +35,12 @@ function WomCon($scope, $modal) {
   	    templateUrl: 'eventContent.html',
   	    controller: EventModalCon,
   	    resolve: {
-  	      event: function () {
-  	        return $scope.events[index];
-  	      }
+  	      events: function () {
+  	        return $scope.events;
+  	      },
+          index: function () {
+            return index;
+          }
   	    }
   	  });
 
@@ -140,13 +143,31 @@ function WomCon($scope, $modal) {
       };
     }
 
-    function EventModalCon($scope, $modalInstance, event) {
+    function EventModalCon($scope, $modalInstance, events, index) {
 
-      $scope.event = event;
+      $scope.event = events[index];
+      $scope.editMode = false;
+      $scope.editedEvent = {};
 
-      // $scope.open = function () {
-      //   $modalInstance.close($scope.selected.item);
-      // };
+      $scope.enterEditMode = function () {
+        // $scope.editedEvent = {imageLocation:$scope.event.imageLocation, categories:$scope.event.categories};
+        $scope.editedEvent = angular.copy($scope.event);
+        $scope.editMode = true;
+      };
+
+      $scope.submitEdits = function() {
+        $scope.event = $scope.editedEvent;
+        events[index] = $scope.event;
+        // console.log(events);
+        // events.splice(index, 1);
+        // events.splice(index, 0, $scope.editedEvents);
+        // console.log(events);
+        $scope.editMode = false;
+      };
+
+      $scope.cancelEdits = function() {
+        $scope.editMode = false;
+      };
 
       $scope.close = function () {
         $modalInstance.dismiss('cancel');
