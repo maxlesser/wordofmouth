@@ -4,7 +4,7 @@ function WomCon($scope, $modal) {
 
   $scope.events = [
     {imageLocation:'https://lh4.googleusercontent.com/-Yo0xPhkpEkw/AAAAAAAAAAI/AAAAAAAAABg/1_d4z5kPZ8c/w48-c-h48/photo.jpg', categories:['sport']},
-    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sport'], name:"NAME", date:"12/12/13", location:"LOCATION"},
+    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sport'], name:"NAME", date:"10-05-2012 11:38:46", location:"LOCATION"},
     {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sport']},
     {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sport', 'social', 'theater']},
     {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sport', 'social']}
@@ -43,6 +43,16 @@ function WomCon($scope, $modal) {
           }
   	    }
   	  });
+
+      modalInstance.opened.then(function () {
+        setTimeout(function() {
+          document.getElementById('_name').className = '_summary'; 
+          document.getElementById('_description').className = '_description'; 
+          document.getElementById('_location').className = '_location'; 
+          document.getElementById('_start').className = '_start'; 
+          addthisevent.refresh();
+        }, 1);
+      });
 
   	  modalInstance.result.then(function () {
   	  }, function () {
