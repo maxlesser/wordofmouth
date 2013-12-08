@@ -10,6 +10,10 @@ function WomCon($scope, $modal) {
     {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000', social:'#00FFFF'}}
     ];
 
+  $scope.users = [
+    {email:'wheels', password:'max'}
+  ]
+
   $scope.theater = function() {
     $scope.events[0].categories['color'] = '#FF0000';
   }
@@ -59,21 +63,67 @@ function WomCon($scope, $modal) {
       });
 
       modalInstance.result.then(function (user) {
-        // take in a user or something
-        console.log(user);
+        // this would be validated on the backend if it were a real site, not the frontend
+        // password would also be hashed and then sent, and compared to a hashed pw
+        user.email = user.email.toLowerCase();
+        user.password = user.password.toLowerCase();
+        for (var i = 0; i < $scope.users.length; i++) {
+          if($scope.users[i].email == user.email)
+          {
+            console.log('That email is already in use!!');
+            return;
+          }
+        };
+        
+        console.log('user created!');
+        $scope.users.push(user);
       }, function () {
         // $log.info('Modal dismissed at: ' + new Date());
       });
     };
 
+    $scope.openLoginModal = function() {
+      var modalInstance = $modal.open({
+        templateUrl: 'login.html',
+        controller: LoginCon
+      });
+
+      modalInstance.result.then(function (user) {
+
+        // this would be validated on the backend if it were a real site, not the frontend
+        // password would also be hashed and then sent, and compared to a hashed pw
+        user.email = user.email.toLowerCase();
+        user.password = user.password.toLowerCase();
+        for (var i = 0; i < $scope.users.length; i++) {
+          if($scope.users[i].email == user.email && $scope.users[i].password == user.password)
+          {
+            console.log('you successfully logged in!');
+            return;
+          }
+        };
+
+        console.log('unable to log in - please check email/password combination.');
+      }, function () {
+        // $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+    function LoginCon($scope, $modalInstance) {
+      $scope.user = {email:'', password:''};
+
+      $scope.ok = function () {
+        $modalInstance.close($scope.user);
+      };
+
+      $scope.close = function () {
+        $modalInstance.dismiss('cancel');
+      };
+    }
+
     function CreateAccountCon($scope, $modalInstance) {
 
 
       $scope.user = {email:'', password:''};
-
-      // $scope.open = function () {
-      //   $modalInstance.close($scope.selected.item);
-      // };
 
       $scope.ok = function () {
         $modalInstance.close($scope.user);
