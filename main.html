@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
     	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.7.0.js"></script>
 		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript" src="http://js.addthisevent.com/atemay.js"></script>
 
 		<!--
 		<link href="bootstrap.min.css" rel="stylesheet">
@@ -73,6 +74,20 @@
 					            <p>{{event.location}}</p>
 					        </div>
 					        <div class="modal-footer">
+						        <a href="" title="Add to Calendar" class="addthisevent">
+								    Add to Calendar
+								    <span class="_start">10-05-2012 11:38:46</span>
+								    <span class="_end">11-05-2012 11:38:46</span>
+								    <span class="_zonecode">35</span>
+								    <span class="_summary">Summary of the event</span>
+								    <span class="_description">Description of the event</span>
+								    <span class="_location">Location of the event</span>
+								    <span class="_organizer">Organizer</span>
+								    <span class="_organizer_email">Organizer e-mail</span>
+								    <span class="_facebook_event">http://www.facebook.com/events/160427380695693</span>
+								    <span class="_all_day_event">true</span>
+								    <span class="_date_format">DD/MM/YYYY</span>
+								</a>
 					        	<button class="btn btn-warning" ng-click="enterEditMode()" ng-show="{event.owner == currentUser.email}">Edit My Event</button>
 					            <button class="btn btn-primary" ng-click="close()">Close</button>
 					        </div>
