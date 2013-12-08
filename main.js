@@ -1,10 +1,10 @@
 angular.module('myApp', ['ui.bootstrap']);
 
-function WomCon($scope) {
+function WomCon($scope, $modal) {
 
   $scope.events = [
     {imageLocation:'https://lh4.googleusercontent.com/-Yo0xPhkpEkw/AAAAAAAAAAI/AAAAAAAAABg/1_d4z5kPZ8c/w48-c-h48/photo.jpg', categories:{color:'#ff9900'}},
-    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000'}},
+    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000'}, name:"NAME", date:"12/12/13", location:"LOCATION"},
     {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000'}},
     {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000', social:'#00FFFF', theater:'#00FF00'}},
     {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000', social:'#00FFFF'}}
@@ -14,14 +14,70 @@ function WomCon($scope) {
     $scope.events[0].categories['color'] = '#FF0000';
   }
 
-  $scope.mouseenter = function(index) {
+  $scope.showOverlay = function(index) {
   	$scope.events[index].overlay = "true";
   }
 
-  $scope.mouseleave = function(index) {
+  $scope.hideOverlay = function(index) {
   	$scope.events[index].overlay = "false";
   }
-}
+
+  $scope.openEventModal = function(index) {
+  	  var modalInstance = $modal.open({
+  	    templateUrl: 'eventContent.html',
+  	    controller: EventModalCon,
+  	    resolve: {
+  	      event: function () {
+  	        return $scope.events[index];
+  	      }
+  	    }
+  	  });
+
+  	  modalInstance.result.then(function () {
+  	  }, function () {
+  	    // $log.info('Modal dismissed at: ' + new Date());
+  	  });
+  	};
+
+    $scope.openShoutModal = function(index) {
+      var modalInstance = $modal.open({
+        templateUrl: 'shoutContent.html',
+        controller: ShoutModalCon
+      });
+
+      modalInstance.result.then(function (newEvent) {
+        $scope.events.push(newEvent);
+      }, function () {
+        // $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+    function EventModalCon($scope, $modalInstance, event) {
+
+      $scope.event = event;
+
+      // $scope.open = function () {
+      //   $modalInstance.close($scope.selected.item);
+      // };
+
+      $scope.close = function () {
+        $modalInstance.dismiss('cancel');
+      };
+    }
+
+    function ShoutModalCon($scope, $modalInstance) {
+
+      $scope.newEvent = [];
+
+      $scope.ok = function () {
+        $modalInstance.close($scope.newEvent);
+      };
+
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+    }
+  }
 
 // function TodoCtrl($scope) {
 //   $scope.todos = [

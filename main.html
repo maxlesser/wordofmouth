@@ -1,11 +1,20 @@
 <!doctype html>
 <html ng-app="myApp">
 	<head>
+		
 		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 		<link href="main.css" rel="stylesheet">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
     	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.7.0.js"></script>
 		<script type="text/javascript" src="main.js"></script>
+
+		<!--
+		<link href="bootstrap.min.css" rel="stylesheet">
+		<link href="main.css" rel="stylesheet">
+		<script type="text/javascript" src="angular.min.js"></script>
+    	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.7.0.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+		-->
 	</head>
 	<body>
 		<div ng-controller="WomCon">
@@ -15,7 +24,7 @@
 				<div class="jumbotron" id='header-div'>
 					<h1>Word of Mouth</h1>
 					<h2>Click here to post an event</h2>
-					<button class='btn btn-lg' id='shout-button'>Shout!</button>
+					<button class='btn btn-lg' id='shout-button' ng-click="openShoutModal()">Shout!</button>
 				</div>
 				<!-- add search bar here !-->
 
@@ -32,13 +41,15 @@
 
 					<div class="row">
 						<div class="col-xs-6 col-md-3" ng-repeat="event in events track by $index">
-					    	<div class="thumbnail" ng-mouseenter="mouseenter($index)" ng-mouseleave="mouseleave($index)">
+					    	<div class="thumbnail" ng-mouseenter="showOverlay($index)" ng-mouseleave="hideOverlay($index)" ng-click="openEventModal($index)">
 					    		<a class="thumbnail inner-thumbnail" href='#'>
 					    			<img src="{{event.imageLocation}}"/>
 					    		</a>
 					    		<div class="thumbnail inner-thumbnail event-overlay col-xs-12 col-md-12" style='height:100%;' ng-show="event.overlay">
-					    			<h3>Robots!</h3>
+					    			<h3>{{event.name}}</h3>
                 					<p>Lorem ipsum dolor sit amet</p>
+                					<p>{{event.date}}</p>
+                					<p>{{event.location}}</p>
                 				</div>
 								<div ng-repeat="category in event.categories" style='background-color:{{category}}; width:100%; height:5px;'/>
 					    	</div>
@@ -46,6 +57,44 @@
 					</div>
 				</div>
 			</div>
+			<!-- where is this going to go? can it be loaded from here? yes-->
+			<script type="text/ng-template" id="eventContent.html">
+		    	<div class="modal-dialog">
+					<div class="modal-content">
+				        <div class="modal-header">
+				            <h3>{{event.name}}</h3>
+				        </div>
+				        <div class="modal-body">
+				            <p>{{event.date}}</p>
+				            <p>{{event.location}}</p>
+				        </div>
+				        <div class="modal-footer">
+				            <button class="btn btn-primary" ng-click="close()">Close</button>
+				        </div>
+					</div>
+				</div>
+		    </script>
+		    <script type="text/ng-template" id="shoutContent.html">
+		    	<div class="modal-dialog">
+					<div class="modal-content">
+				        <div class="modal-header">
+				            <h3>Im a modal!</h3>
+				        </div>
+				        <div class="modal-body">
+				            <ul>
+				                <li ng-repeat="item in items">
+				                    <a ng-click="selected.item = item">{{ item }}</a>
+				                </li>
+				            </ul>
+				            Selected: <b>{{ selected.item }}</b>
+				        </div>
+				        <div class="modal-footer">
+				            <button class="btn btn-primary" ng-click="ok()">OK</button>
+				            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+				        </div>
+					</div>
+				</div>
+		    </script>
 		</div>
 
 
