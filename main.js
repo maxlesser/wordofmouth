@@ -14,6 +14,8 @@ function WomCon($scope, $modal) {
     {email:'wheels', password:'max'}
   ]
 
+  $scope.currentUser = {};
+
   $scope.theater = function() {
     $scope.events[0].categories['color'] = '#FF0000';
   }
@@ -77,6 +79,7 @@ function WomCon($scope, $modal) {
         
         console.log('user created!');
         $scope.users.push(user);
+        $scope.currentUser = user;
       }, function () {
         // $log.info('Modal dismissed at: ' + new Date());
       });
@@ -98,6 +101,7 @@ function WomCon($scope, $modal) {
           if($scope.users[i].email == user.email && $scope.users[i].password == user.password)
           {
             console.log('you successfully logged in!');
+            $scope.currentUser = user;
             return;
           }
         };
