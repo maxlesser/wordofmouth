@@ -149,7 +149,7 @@ function WomCon($scope, $modal) {
 
     function ShoutModalCon($scope, $modalInstance) {
 
-      $scope.newEvent = [];
+      $scope.newEvent = {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000'}};
 
       $scope.ok = function () {
         $modalInstance.close($scope.newEvent);

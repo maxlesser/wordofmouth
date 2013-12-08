@@ -43,11 +43,11 @@
 
 					<div class="row">
 						<div class="col-xs-6 col-md-3" ng-repeat="event in events track by $index">
-					    	<div class="thumbnail" ng-mouseenter="showOverlay($index)" ng-mouseleave="hideOverlay($index)" ng-click="openEventModal($index)">
+					    	<div class="thumbnail" ng-mouseenter="showOverlay($index)" ng-mouseleave="hideOverlay($index)" ng-click="openEventModal($index)"  ng-animate="{enter: 'animate-enter'}">
 					    		<a class="thumbnail inner-thumbnail" href='#'>
 					    			<img src="{{event.imageLocation}}"/>
 					    		</a>
-					    		<div class="thumbnail inner-thumbnail event-overlay col-xs-12 col-md-12" style='height:100%;' ng-show="event.overlay">
+					    		<div class="thumbnail inner-thumbnail event-overlay col-xs-12 col-md-12" style='height:100%;' ng-show="event.overlay" ng-animate="{show:'animate-show', hide:'animate-hide'}">
 					    			<h3>{{event.name}}</h3>
                 					<p>Lorem ipsum dolor sit amet</p>
                 					<p>{{event.date}}</p>
@@ -83,12 +83,9 @@
 				            <h3>Im a modal!</h3>
 				        </div>
 				        <div class="modal-body">
-				            <ul>
-				                <li ng-repeat="item in items">
-				                    <a ng-click="selected.item = item">{{ item }}</a>
-				                </li>
-				            </ul>
-				            Selected: <b>{{ selected.item }}</b>
+				            <p>Name:<input ng-model='newEvent.name'></p>
+				            <p>Date:<input ng-model='newEvent.date'></p>
+				            <p>Location<input ng-model='newEvent.location'></p>
 				        </div>
 				        <div class="modal-footer">
 				            <button class="btn btn-primary" ng-click="ok()">OK</button>

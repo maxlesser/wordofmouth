@@ -18,12 +18,56 @@
 	margin: 0px;
 }
 
+.event-tile {
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+
 .event-overlay {
 	background: none repeat scroll 0 0 #000;
     opacity: 0.7;
     top:0;
     left:0;
     position: absolute;
+}
+
+.animate-enter {
+  -webkit-transition:all linear 1s;
+  -moz-transition:all linear 1s;
+  -ms-transition:all linear 1s;
+  -o-transition:all linear 1s;
+  transition:all linear 1s;
+  opacity: 0;
+}
+ 
+.animate-enter.animate-enter-active {
+  opacity: 1;
+}
+
+.animate-show, .animate-hide {
+  -webkit-transition:all linear 1s;
+  -moz-transition:all linear 1s;
+  -ms-transition:all linear 1s;
+  -o-transition:all linear 1s;
+  transition:all linear 1s;
+
+}
+
+.animate-show {
+  opacity:0;
+}
+
+.animate-show.animate-show-active {
+  opacity:1;
+}
+
+.animate-hide {
+  opacity:1;
+}
+
+.animate-hide.animate-hide-active {
+  opacity:0;
 }
 
 .event-modal {
