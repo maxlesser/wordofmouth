@@ -31,18 +31,18 @@
 				<!-- add search bar here !-->
 
 				<div class='btn-group' id='sort-buttons-div'>
-					<button class='btn btn-primary btn-lg' id='theater' ng-click="theater()">Theater</button>
-					<button class='btn btn-success btn-lg' id='talks'>Talks</button>
-					<button class='btn btn-warning btn-lg' id='social'>Social</button>
-					<button class='btn btn-danger btn-lg' id='music'>Music</button>
-					<button class='btn btn-info btn-lg' id='sports'>Sports</button>
+					<button class='btn btn-primary btn-lg' id='theater' ng-click="filter('theater')">Theater</button>
+					<button class='btn btn-success btn-lg' id='talks' ng-click="filter('talk')">Talks</button>
+					<button class='btn btn-warning btn-lg' id='social' ng-click="filter('social')">Social</button>
+					<button class='btn btn-danger btn-lg' id='music' ng-click="filter('music')">Music</button>
+					<button class='btn btn-info btn-lg' id='sports' ng-click="filter('sport')">Sports</button>
 				</div>
 
 				<div id='events-div'>
 					<h1>Today</h1>
 
 					<div class="row">
-						<div class="col-xs-6 col-md-3" ng-repeat="event in events track by $index">
+						<div class="col-xs-6 col-md-3" ng-repeat="event in events | filter:categoryFilter track by $index">
 					    	<div class="thumbnail" ng-mouseenter="showOverlay($index)" ng-mouseleave="hideOverlay($index)" ng-click="openEventModal($index)"  ng-animate="{enter: 'animate-enter'}">
 					    		<a class="thumbnail inner-thumbnail" href='#'>
 					    			<img src="{{event.imageLocation}}"/>
