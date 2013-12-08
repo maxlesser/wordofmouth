@@ -52,6 +52,38 @@ function WomCon($scope, $modal) {
       });
     };
 
+    $scope.openCreateAccountModal = function() {
+      var modalInstance = $modal.open({
+        templateUrl: 'createAccount.html',
+        controller: CreateAccountCon
+      });
+
+      modalInstance.result.then(function (user) {
+        // take in a user or something
+        console.log(user);
+      }, function () {
+        // $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+    function CreateAccountCon($scope, $modalInstance) {
+
+
+      $scope.user = {email:'', password:''};
+
+      // $scope.open = function () {
+      //   $modalInstance.close($scope.selected.item);
+      // };
+
+      $scope.ok = function () {
+        $modalInstance.close($scope.user);
+      };
+
+      $scope.close = function () {
+        $modalInstance.dismiss('cancel');
+      };
+    }
+
     function EventModalCon($scope, $modalInstance, event) {
 
       $scope.event = event;

@@ -25,6 +25,7 @@
 					<h1>Word of Mouth</h1>
 					<h2>Click here to post an event</h2>
 					<button class='btn btn-lg' id='shout-button' ng-click="openShoutModal()">Shout!</button>
+					<button class='btn btn-lg' id='account-button' ng-click="openCreateAccountModal()">New Account!</button>
 				</div>
 				<!-- add search bar here !-->
 
@@ -90,6 +91,22 @@
 				        </div>
 				        <div class="modal-footer">
 				            <button class="btn btn-primary" ng-click="ok()">OK</button>
+				            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+				        </div>
+					</div>
+				</div>
+		    </script>
+		    <script type="text/ng-template" id="createAccount.html">
+		    	<div class="modal-dialog">
+					<div class="modal-content">
+				        <div class="modal-header">
+				            <h3>Im a modal!</h3>
+				        </div>
+				        <div class="modal-body">
+				            <input ng-model='user.email'>
+				        </div>
+				        <div class="modal-footer">
+				            <button class="btn btn-primary" ng-click="ok()">Submit</button>
 				            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
 				        </div>
 					</div>
