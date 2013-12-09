@@ -1,6 +1,8 @@
 angular.module('myApp', ['ngAnimate', 'ui.bootstrap']);
 // angular.module('myApp', ['ngAnimate']);
 
+globalCategoryColors = {talk:"#5cb85c", sports:"#5bc0de", social:"#f0ad4e", theater:"#428bca", music:"#d9534f"};
+
 function WomCon($scope, $modal) {
 
   $scope.events = [
@@ -15,7 +17,7 @@ function WomCon($scope, $modal) {
     {email:'wheels', password:'max'}
   ]
 
-  $scope.categoryColors = {talk:"#5cb85c", sports:"#5bc0de", social:"#f0ad4e", theater:"#428bca", music:"#d9534f"};
+  $scope.categoryColors = globalCategoryColors;
 
   $scope.currentUser = {};
 
@@ -158,6 +160,7 @@ function WomCon($scope, $modal) {
     }
 
     function EventModalCon($scope, $modalInstance, events, index) {
+      $scope.categoryColors = globalCategoryColors;
 
       $scope.event = events[index];
       $scope.editMode = false;
