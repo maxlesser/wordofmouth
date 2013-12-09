@@ -81,4 +81,7 @@
 
 .image-container img {
    max-width: 100%;   
+
+.clear { 
+  clear:both; 
 }
