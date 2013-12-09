@@ -1,4 +1,4 @@
-.btn-primary:focus {
+/*.btn-primary:focus {
   background-color: #000;
 }
 .btn-success:focus {
@@ -12,7 +12,7 @@
 }
 .btn-danger:focus {
   background-color: #000;
-}
+}*/
 
 .modal {
   display: block;

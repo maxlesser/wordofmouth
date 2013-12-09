@@ -16,7 +16,11 @@ function WomCon($scope, $modal) {
   $scope.categoryColors = globalCategoryColors;
   $scope.currentUser = globalCurrentUser;
 
-  $scope.categoryFilter = '';
+  $scope.theaterFilter = '';
+  $scope.talkFilter = '';
+  $scope.socialFilter = '';
+  $scope.musicFilter = '';
+  $scope.sportsFilter = '';
   $scope.searchFilter = '';
   $scope.date = 'date';
 

@@ -4,6 +4,8 @@
 		
 		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 		<link href="main.css" rel="stylesheet">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-animate.js"></script>
     	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.7.0.js"></script>
@@ -38,15 +40,27 @@
 					<input id="search-bar" class="form-control" ng-model="searchFilter" placeholder='Search' style='width:50%'/>
 				</div>
 				<br>
-				<div class="btn-group" data-toggle="buttons">
-				  <label class="btn btn-primary">
-				    <input type="checkbox"> Option 1
+				<!-- <button class='btn btn-primary btn-lg' id='theater' ng-click="changeCategoryFilter('theater')" style='width:20%;'>Theater</button>
+					<button class='btn btn-success btn-lg' id='talks' ng-click="changeCategoryFilter('talk')" style='width:20%;'>Talks</button>
+					<button class='btn btn-warning btn-lg' id='social' ng-click="changeCategoryFilter('social')" style='width:20%;'>Social</button>
+					<button class='btn btn-danger btn-lg' id='music' ng-click="changeCategoryFilter('music')" style='width:20%;'>Music</button>
+					<button class='btn btn-info btn-lg' id='sports' ng-click="changeCategoryFilter('sport')" style='width:20%;'>Sports</button> -->
+
+				<div class="btn-group btn-group-justified container" data-toggle="buttons">
+				  <label class="btn btn-primary btn-lg" style='width:20%;'>
+				    <input type="checkbox" ng-click="changeCategoryFilter('theater')">Theater
 				  </label>
-				  <label class="btn btn-primary">
-				    <input type="checkbox"> Option 2
+				  <label class="btn btn-success btn-lg" style='width:20%;'>
+				    <input type="checkbox" ng-click="changeCategoryFilter('talk')">Talks
 				  </label>
-				  <label class="btn btn-primary">
-				    <input type="checkbox"> Option 3
+				  <label class="btn btn-warning btn-lg" style='width:20%;'>
+				    <input type="checkbox" ng-click="changeCategoryFilter('social')">Social
+				  </label>
+				  <label class="btn btn-danger btn-lg" style='width:20%;'>
+				    <input type="checkbox" ng-click="changeCategoryFilter('music')">Music
+				  </label>
+				  <label class="btn btn-info btn-lg" style='width:20%;'>
+				    <input type="checkbox" ng-click="changeCategoryFilter('sport')">Sports
 				  </label>
 				</div>
 
