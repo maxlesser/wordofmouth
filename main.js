@@ -1,18 +1,21 @@
-angular.module('myApp', ['ui.bootstrap']);
+angular.module('myApp', ['ngAnimate', 'ui.bootstrap']);
+// angular.module('myApp', ['ngAnimate']);
 
 function WomCon($scope, $modal) {
 
   $scope.events = [
     {imageLocation:'https://lh4.googleusercontent.com/-Yo0xPhkpEkw/AAAAAAAAAAI/AAAAAAAAABg/1_d4z5kPZ8c/w48-c-h48/photo.jpg', categories:['sport']},
-    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sport'], name:"NAME", date:"10-05-2012 11:38:46", location:"LOCATION"},
-    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sport']},
-    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sport', 'social', 'theater']},
-    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sport', 'social']}
+    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sports'], name:"NAME", date:"10-05-2012 11:38:46", location:"LOCATION"},
+    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sports']},
+    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sports', 'social', 'theater']},
+    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sports', 'social']}
     ];
 
   $scope.users = [
     {email:'wheels', password:'max'}
   ]
+
+  $scope.categoryColors = {talk:"#5cb85c", sports:"#5bc0de", social:"#f0ad4e", theater:"#428bca", music:"#d9534f"};
 
   $scope.currentUser = {};
 

@@ -4,7 +4,8 @@
 		
 		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 		<link href="main.css" rel="stylesheet">
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-animate.js"></script>
     	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.7.0.js"></script>
 		<script type="text/javascript" src="http://js.addthisevent.com/atemay.js"></script>
 		<script type="text/javascript" src="main.js"></script>
@@ -43,18 +44,19 @@
 					<h1>Today</h1>
 
 					<div class="row">
-						<div class="col-xs-6 col-md-3" ng-repeat="event in events | filter:categoryFilter track by $index">
-					    	<div class="thumbnail" ng-mouseenter="showOverlay($index)" ng-mouseleave="hideOverlay($index)" ng-click="openEventModal($index)"  ng-animate="{enter: 'animate-enter'}">
+						<div class="col-xs-6 col-md-3 repeat-fade" ng-repeat="event in events | filter:categoryFilter track by $index">
+					    	<div class="thumbnail" ng-mouseenter="showOverlay($index)" ng-mouseleave="hideOverlay($index)" ng-click="openEventModal($index)">
 					    		<a class="thumbnail inner-thumbnail" href='#'>
 					    			<img src="{{event.imageLocation}}"/>
 					    		</a>
-					    		<div class="thumbnail inner-thumbnail event-overlay col-xs-12 col-md-12" style='height:100%;' ng-show="event.overlay" ng-animate="{show:'animate-show', hide:'animate-hide'}">
-					    			<h3>{{event.name}}</h3>
-                					<p>Lorem ipsum dolor sit amet</p>
-                					<p>{{event.date}}</p>
-                					<p>{{event.location}}</p>
+					    		<div class="thumbnail inner-thumbnail event-overlay col-xs-12 col-md-12 show-fade" ng-show="event.overlay">
+					    			<div class="event-details"> 
+						    			<span class="event-details-name">{{event.name}}</span>
+	                					<span class="event-details-date">{{event.date}}</span>
+	                					<span class="event-details-location">{{event.location}}</span>
+	                				</div>
                 				</div>
-								<div ng-repeat="category in event.categories" style='background-color:{{category}}; width:100%; height:5px;'/>
+								<div ng-repeat="category in event.categories" style='background-color:{{categoryColors[category]}}; width:100%; height:5px;'/>
 					    	</div>
 						</div>
 					</div>
