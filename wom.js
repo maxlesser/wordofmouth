@@ -15,6 +15,9 @@ http.createServer(function (request, response) {
     case '/main.css':
       show_css(request, response);
       break;
+    case '/bower_components/angular-file-dnd/dist/angular-file-dnd.min.js':
+      show_bower(request, response);
+      break;
     default:
       show_404(request, response);
       break;
@@ -26,6 +29,14 @@ function show_main(request, response) {
   sys.puts("Serving main page");
   response.writeHead(200, {'Content-Type': 'text/html'});
   fs.readFile("main.html", function(err, text){
+    response.end(text);
+  });
+}
+
+function show_bower(request, response) {
+  sys.puts("Serving main page");
+  response.writeHead(200, {'Content-Type': 'text/javascript'});
+  fs.readFile("bower_components/angular-file-dnd/dist/angular-file-dnd.js", function(err, text){
     response.end(text);
   });
 }

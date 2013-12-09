@@ -1,21 +1,20 @@
 angular.module('myApp', ['ngAnimate', 'ui.bootstrap', 'omr.angularFileDnD']);
-// angular.module('myApp', ['ngAnimate']);
 
 globalCategoryColors = {talk:"#5cb85c", sports:"#5bc0de", social:"#f0ad4e", theater:"#428bca", music:"#d9534f"};
+globalUsers = [
+    {email:'wheels', password:'max'}
+  ];
+globalEvents = [
+    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', description:'this is a test event! it is being used for test purposes.', categories:['talk', 'sports'], name:"1", date:new Date(), time:'', location:"LOCATION", ownerEmail:'wheels'},
+    ];
+globalCurrentUser = {};
 
 function WomCon($scope, $modal) {
 
-  $scope.events = [
-    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', description:'this is a test event! it is being used for test purposes.', categories:['talk', 'sports'], name:"1", date:new Date(), time:'', location:"LOCATION"},
-    ];
-
-  $scope.users = [
-    {email:'wheels', password:'max'}
-  ]
-
+  $scope.events = globalEvents;
+  $scope.users = globalUsers
   $scope.categoryColors = globalCategoryColors;
-
-  $scope.currentUser = {};
+  $scope.currentUser = globalCurrentUser;
 
   $scope.categoryFilter = '';
   $scope.searchFilter = '';
@@ -34,10 +33,14 @@ function WomCon($scope, $modal) {
   }
 
   $scope.openEventModal = function(event) {
+
 	  var modalInstance = $modal.open({
 	    templateUrl: 'eventContent.html',
 	    controller: EventModalCon,
 	    resolve: {
+        user: function() {
+          return $scope.currentUser;
+        },
         event: function () {
           return event;
         }
@@ -127,82 +130,84 @@ function WomCon($scope, $modal) {
           $scope.currentUser = user;
           return;
         }
-      };
+      }
 
       console.log('unable to log in - please check email/password combination.');
     }, function () {
       // $log.info('Modal dismissed at: ' + new Date());
     });
   };
+}
 
-  function LoginCon($scope, $modalInstance) {
-    $scope.user = {email:'', password:''};
+function LoginCon($scope, $modalInstance) {
 
-    $scope.ok = function () {
-      $modalInstance.close($scope.user);
-    };
+  $scope.user = {email:'', password:''};
 
-    $scope.close = function () {
-      $modalInstance.dismiss('cancel');
-    };
-  }
+  $scope.ok = function () {
+    $modalInstance.close($scope.user);
+  };
 
-  function CreateAccountCon($scope, $modalInstance) {
+  $scope.close = function () {
+    $modalInstance.dismiss('cancel');
+  };
+}
 
+function CreateAccountCon($scope, $modalInstance) {
 
-    $scope.user = {email:'', password:''};
+  $scope.user = {email:'', password:''};
 
-    $scope.ok = function () {
-      $modalInstance.close($scope.user);
-    };
+  $scope.ok = function () {
+    $modalInstance.close($scope.user);
+  };
 
-    $scope.close = function () {
-      $modalInstance.dismiss('cancel');
-    };
-  }
+  $scope.close = function () {
+    $modalInstance.dismiss('cancel');
+  };
+}
 
-  function EventModalCon($scope, $modalInstance, event) {
-    $scope.categoryColors = globalCategoryColors;
+function EventModalCon($scope, $modalInstance, user, event) {
 
-    $scope.event = event;
+  $scope.currentUser = user;
+  $scope.categoryColors = globalCategoryColors;
+
+  $scope.event = event;
+  $scope.editMode = false;
+  $scope.editedEvent = {};
+
+  $scope.enterEditMode = function () {
+    $scope.editedEvent = angular.copy($scope.event);
+    $scope.editMode = true;
+  };
+
+  $scope.submitEdits = function() {
+    angular.copy($scope.editedEvent, $scope.event);
+    $scope.event.date.setHours($scope.event.time.getHours());
+    $scope.event.date.setMinutes($scope.event.time.getMinutes());
     $scope.editMode = false;
-    $scope.editedEvent = {};
+  };
 
-    $scope.enterEditMode = function () {
-      $scope.editedEvent = angular.copy($scope.event);
-      $scope.editMode = true;
-    };
+  $scope.cancelEdits = function() {
+    $scope.editMode = false;
+  };
 
-    $scope.submitEdits = function() {
-      angular.copy($scope.editedEvent, $scope.event);
-      $scope.event.date.setHours($scope.event.time.getHours());
-      $scope.event.date.setMinutes($scope.event.time.getMinutes());
-      $scope.editMode = false;
-    };
+  $scope.close = function () {
+    $modalInstance.dismiss('cancel');
+  };
+}
 
-    $scope.cancelEdits = function() {
-      $scope.editMode = false;
-    };
+function ShoutModalCon($scope, $modalInstance) {
 
-    $scope.close = function () {
-      $modalInstance.dismiss('cancel');
-    };
-  }
+  $scope.newEvent = {categories:{talk:'#ff9900', sport:'#FF0000'}};
+  $scope.image = null;
+  $scope.imageFileName = "";
 
-  function ShoutModalCon($scope, $modalInstance) {
+  $scope.ok = function () {
+    $modalInstance.close($scope.newEvent);
+  };
 
-      $scope.newEvent = {categories:{talk:'#ff9900', sport:'#FF0000'}};
-      $scope.image = null;
-      $scope.imageFileName = "";
-
-    $scope.ok = function () {
-      $modalInstance.close($scope.newEvent);
-    };
-
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-  }
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
 }
 
 // function TodoCtrl($scope) {

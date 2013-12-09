@@ -27,8 +27,10 @@
 						<h1>Word of Mouth</h1>
 						<h2>Click here to post an event</h2>
 						<button class='btn btn-lg' id='shout-button' ng-click="openShoutModal()">Shout!</button>
-						<button class='btn btn-lg' id='account-button' ng-click="openCreateAccountModal()">New Account!</button>
-						<button class='btn btn-lg' id='login-button' ng-click="openLoginModal()">Log In!</button>
+						<button class='btn btn-lg' id='account-button' ng-click="openCreateAccountModal()" ng-show="{{!currentUser.email}}">New Account!</button>
+						<button class='btn btn-lg' id='login-button' ng-click="openLoginModal()" ng-show="{{!currentUser.email}}">Log In!</button>
+						<button class='btn btn-lg' id='id-button' disabled='true' ng-show="{{currentUser.email}}">{{currentUser.email}}</button>
+						<button class='btn btn-lg' id='logout-button' ng-click="openLogoutModal()" ng-show="{{currentUser.email}}">Log In!</button>
 					</div>
 				<div>
 				<div class='navbar-form container' style='text-align:center'>
@@ -105,7 +107,7 @@
 								    <span class="_location" id='_location'>{{event.location}}</span>
 								    <span class="_date_format">DD/MM/YYYY</span>
 								</a>
-					        	<button class="btn btn-warning" ng-click="enterEditMode()" ng-show="{event.owner == currentUser.email}">Edit My Event</button>
+					        	<button class="btn btn-warning" ng-click="enterEditMode()" ng-show="{{event.ownerEmail == currentUser.email}}">Edit My Event</button>
 					            <button class="btn btn-primary" ng-click="close()">Close</button>
 					        </div>
 						</div>
@@ -164,7 +166,7 @@
 				        </div>
 				        <div class="modal-body">
 				            Email:<input ng-model='user.email'>
-				            Password:<input ng-model='user.password'>
+				            Password:<input type='password' ng-model='user.password'>
 				        </div>
 				        <div class="modal-footer">
 				            <button class="btn btn-primary" ng-click="ok()">Submit</button>
@@ -181,7 +183,7 @@
 				        </div>
 				        <div class="modal-body">
 				            Email:<input ng-model='user.email'>
-				            Password:<input ng-model='user.password'>
+				            Password:<input type='password' ng-model='user.password'>
 				        </div>
 				        <div class="modal-footer">
 				            <button class="btn btn-primary" ng-click="ok()">Submit</button>
