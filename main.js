@@ -17,8 +17,9 @@ function WomCon($scope, $modal) {
   $scope.currentUser = {};
 
   $scope.categoryFilter = '';
+  $scope.searchFilter = '';
 
-  $scope.filter = function(category) {
+  $scope.changeCategoryFilter = function(category) {
     $scope.categoryFilter = category;
   }
 
