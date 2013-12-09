@@ -9,6 +9,7 @@
     	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.7.0.js"></script>
 		<script type="text/javascript" src="http://js.addthisevent.com/atemay.js"></script>
 		<script type="text/javascript" src="main.js"></script>
+		<script src="bower_components/angular-file-dnd/dist/angular-file-dnd.min.js"></script>
 
 		<!--
 		<link href="bootstrap.min.css" rel="stylesheet">
@@ -127,6 +128,13 @@
 				            <p>Name:<input ng-model='newEvent.name'></p>
 				            <p>Date:<input ng-model='newEvent.date'></p>
 				            <p>Location<input ng-model='newEvent.location'></p>
+				            <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]" file="newEvent.imageLocation" file-name="imageFileName" data-max-file-size="3">
+				                <span>Drop Image Here</span>
+				            </div>
+				            <div class="image-container">
+			                	<img ng-src={{newEvent.imageLocation}} />
+				                <span class="file-name">{{imageFileName}}</span>
+				            </div>
 				        </div>
 				        <div class="modal-footer">
 				            <button class="btn btn-primary" ng-click="ok()">OK</button>

@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngAnimate', 'ui.bootstrap']);
+angular.module('myApp', ['ngAnimate', 'ui.bootstrap', 'omr.angularFileDnD']);
 // angular.module('myApp', ['ngAnimate']);
 
 globalCategoryColors = {talk:"#5cb85c", sports:"#5bc0de", social:"#f0ad4e", theater:"#428bca", music:"#d9534f"};
@@ -192,7 +192,9 @@ function WomCon($scope, $modal) {
 
     function ShoutModalCon($scope, $modalInstance) {
 
-      $scope.newEvent = {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:{talk:'#ff9900', sport:'#FF0000'}};
+      $scope.newEvent = {categories:{talk:'#ff9900', sport:'#FF0000'}};
+      $scope.image = null;
+      $scope.imageFileName = "";
 
       $scope.ok = function () {
         $modalInstance.close($scope.newEvent);
