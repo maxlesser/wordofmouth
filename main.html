@@ -30,21 +30,20 @@
 					<button class='btn btn-lg' id='account-button' ng-click="openCreateAccountModal()">New Account!</button>
 					<button class='btn btn-lg' id='login-button' ng-click="openLoginModal()">Log In!</button>
 				</div>
-				<!-- add search bar here !-->
-
+				<input id="search-bar" ng-model="searchFilter"/>
 				<div class='btn-group' id='sort-buttons-div'>
-					<button class='btn btn-primary btn-lg' id='theater' ng-click="filter('theater')">Theater</button>
-					<button class='btn btn-success btn-lg' id='talks' ng-click="filter('talk')">Talks</button>
-					<button class='btn btn-warning btn-lg' id='social' ng-click="filter('social')">Social</button>
-					<button class='btn btn-danger btn-lg' id='music' ng-click="filter('music')">Music</button>
-					<button class='btn btn-info btn-lg' id='sports' ng-click="filter('sport')">Sports</button>
+					<button class='btn btn-primary btn-lg' id='theater' ng-click="changeCategoryFilter('theater')">Theater</button>
+					<button class='btn btn-success btn-lg' id='talks' ng-click="changeCategoryFilter('talk')">Talks</button>
+					<button class='btn btn-warning btn-lg' id='social' ng-click="changeCategoryFilter('social')">Social</button>
+					<button class='btn btn-danger btn-lg' id='music' ng-click="changeCategoryFilter('music')">Music</button>
+					<button class='btn btn-info btn-lg' id='sports' ng-click="changeCategoryFilter('sport')">Sports</button>
 				</div>
 
 				<div id='events-div'>
 					<h1>Today</h1>
 
 					<div class="row">
-						<div class="col-xs-6 col-md-3 repeat-fade" ng-repeat="event in events | filter:categoryFilter track by $index">
+						<div class="col-xs-6 col-md-3 repeat-fade" ng-repeat="event in events | filter:categoryFilter | filter:searchFilter track by $index">
 					    	<div class="thumbnail" ng-mouseenter="showOverlay($index)" ng-mouseleave="hideOverlay($index)" ng-click="openEventModal($index)">
 					    		<a class="thumbnail inner-thumbnail" href='#'>
 					    			<img src="{{event.imageLocation}}"/>
@@ -62,7 +61,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- where is this going to go? can it be loaded from here? yes-->
+
 			<script type="text/ng-template" id="eventContent.html">
 		    	<div class="modal-dialog">
 					<div class="modal-content">
