@@ -6,7 +6,6 @@ globalCategoryColors = {talk:"#5cb85c", sports:"#5bc0de", social:"#f0ad4e", thea
 function WomCon($scope, $modal) {
 
   $scope.events = [
-    {imageLocation:'https://lh4.googleusercontent.com/-Yo0xPhkpEkw/AAAAAAAAAAI/AAAAAAAAABg/1_d4z5kPZ8c/w48-c-h48/photo.jpg', categories:['sport']},
     {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sports'], name:"NAME", date:"10-05-2012 11:38:46", location:"LOCATION"},
     {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sports']},
     {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', categories:['talk', 'sports', 'social', 'theater']},
