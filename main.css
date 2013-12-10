@@ -14,22 +14,30 @@
   background-color: #000;
 }*/
 
-.modal {
+.viewEventModal {
   display: block;
-  width:60%;
+  width:80%;
   height:100%;
-  left:20%;
+  left:10%;
+  min-width:500px;
+}
+.newAccountModal {
+  display: block;
+  width:25%;
+  height:100%;
+  left:30%;
+  min-width:500px;
+}
+.loginModal {
+  display: block;
+  width:25%;
+  height:100%;
+  left:30%;
+  min-width:500px;
 }
 .modal-dialog {
   width:100%;
-}
-.modal-content {
-  width:100%;
-  height:100%;
-}
-.modal-body {
-  width:100%;
-  height:100%;
+  min-width:500px;
 }
 .modal-body:before, .modal-body:after {
     display: table;
@@ -43,6 +51,10 @@
 .inner-thumbnail {
 	padding: 0px;
 	margin: 0px;
+}
+
+.wide-password {
+  width:100%;
 }
 
 .event-overlay {

@@ -185,8 +185,24 @@
 				            <h3>Im a modal!</h3>
 				        </div>
 				        <div class="modal-body">
-				            Email:<input ng-model='user.email'>
-				            Password:<input type='password' ng-model='user.password'>
+						    <div class="col-lg-12">
+						      <div class="input-group">
+						        <input type="text" class="form-control" placeholder='Email' ng-model='user.email'>
+						        <div class="input-group-btn">
+						          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{emailAction}}<span class="caret"></span></button>
+						          <ul class="dropdown-menu pull-right">
+						            <li><a href="#" ng-click='emailAction = "@brown.edu"'>@brown.edu</a></li>
+						            <li><a href="#" ng-click='emailAction = "@risd.edu"'>@risd.edu</a></li>
+						          </ul>
+						        </div>
+						      </div>
+						    </div>
+						    <br><br>
+						    <div class="col-lg-12 col-md-12">
+						      <div class="input-group wide-password">
+						        <input class="form-control" type='password' placeholder='Password' ng-model='user.password'>
+						      </div>
+						    </div>
 				        </div>
 				        <div class="modal-footer">
 				            <button class="btn btn-primary" ng-click="ok()">Submit</button>
@@ -202,8 +218,24 @@
 				            <h3>Im a modal!</h3>
 				        </div>
 				        <div class="modal-body">
-				            Email:<input ng-model='user.email'>
-				            Password:<input type='password' ng-model='user.password'>
+						    <div class="col-lg-12">
+						      <div class="input-group">
+						        <input type="text" class="form-control" placeholder='Email' ng-model='user.email'>
+						        <div class="input-group-btn">
+						          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{emailAction}}<span class="caret"></span></button>
+						          <ul class="dropdown-menu pull-right">
+						            <li><a href="#" ng-click='emailAction = "@brown.edu"'>@brown.edu</a></li>
+						            <li><a href="#" ng-click='emailAction = "@risd.edu"'>@risd.edu</a></li>
+						          </ul>
+						        </div>
+						      </div>
+						    </div>
+						    <br><br>
+						    <div class="col-lg-12 col-md-12">
+						      <div class="input-group wide-password">
+						        <input class="form-control" type='password' placeholder='Password' ng-model='user.password'>
+						      </div>
+						    </div>
 				        </div>
 				        <div class="modal-footer">
 				            <button class="btn btn-primary" ng-click="ok()">Submit</button>

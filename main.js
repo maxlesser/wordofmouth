@@ -47,6 +47,7 @@ function WomCon($scope, $modal) {
 
 	  var modalInstance = $modal.open({
 	    templateUrl: 'eventContent.html',
+      windowClass: 'viewEventModal',
 	    controller: EventModalCon,
 	    resolve: {
         user: function() {
@@ -101,6 +102,7 @@ function WomCon($scope, $modal) {
   $scope.openCreateAccountModal = function() {
     var modalInstance = $modal.open({
       templateUrl: 'createAccount.html',
+      windowClass: 'newAccountModal',
       controller: CreateAccountCon
     });
 
@@ -128,6 +130,7 @@ function WomCon($scope, $modal) {
   $scope.openLoginModal = function() {
     var modalInstance = $modal.open({
       templateUrl: 'login.html',
+      windowClass: 'loginModal',
       controller: LoginCon
     });
 
@@ -196,6 +199,7 @@ function LoginCon($scope, $modalInstance) {
 }
 
 function CreateAccountCon($scope, $modalInstance) {
+  $scope.emailAction = '@brown.edu';
 
   $scope.ok = function () {
     $modalInstance.close($scope.user);
