@@ -190,6 +190,10 @@ function EventModalCon($scope, $modalInstance, user, event, colors) {
     $scope.tooFewCategories = $scope.categories.length == 0;
   }
 
+  $scope.clearImage = function () {
+    $scope.editedEvent.imageLocation = null;
+  }
+
   $scope.cancelEdits = function() {
     $scope.editMode = false;
   };

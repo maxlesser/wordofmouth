@@ -137,12 +137,13 @@
 					        <div class="modal-body" style='display:inline-block'>
 					        	<div style='float:left; padding-right:40px'>
 					        		<p>
-	        				            <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]" file="newEvent.imageLocation" file-name="imageFileName" data-max-file-size="3">
+	        				            <div class="dropzone show-fade" file-dropzone="[image/png, image/jpeg, image/gif]" file="editedEvent.imageLocation" file-name="imageFileName" data-max-file-size="3" ng-hide="editedEvent.imageLocation">
 	        				                <span>Drop Image Here</span>
 	        				            </div>
-	        				            <div class="image-container">
-	        			                	<img ng-src={{newEvent.imageLocation}} />
+	        				            <div class="thumbnail image-container show-fade" ng-show="editedEvent.imageLocation">
+	        			                	<img ng-src={{editedEvent.imageLocation}} />
 	        				                <span class="file-name">{{imageFileName}}</span>
+	        				                <button class='btn btn-warning' ng-click="clearImage()">Clear</button>
 	        				            </div>
 	        				        </p>
 					        		<p>
@@ -185,8 +186,8 @@
 								</div>
 								<div class='clear'></div>
 					        <div class="modal-footer">
-					       		<button class="btn btn-primary" ng-click="cancelEdits()">Cancel</button>
-					        	<button class="btn btn-warning" ng-click="submitEdits()">Update Event</button>
+					       		<button class="btn btn-warning" ng-click="cancelEdits()">Cancel</button>
+					        	<button class="btn btn-success" ng-click="submitEdits()">Update Event</button>
 					        </div>
 						</div>
 					</div>
