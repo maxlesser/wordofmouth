@@ -20,6 +20,17 @@
   height:100%;
   left:20%;
 }
+.modal-dialog {
+  width:100%;
+}
+.modal-content {
+  width:100%;
+  height:100%;
+}
+.modal-body {
+  width:100%;
+  height:100%;
+}
 .modal-body:before, .modal-body:after {
     display: table;
     content: " ";
