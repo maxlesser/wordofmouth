@@ -72,6 +72,7 @@
 						    			<span class="event-details-name">{{event.name}}</span>
 	                					<span class="event-details-date">{{event.date}}</span>
 	                					<span class="event-details-location">{{event.location}}</span>
+	                					<span class="event-details-description">{{event.description}}</span>
 	                				</div>
                 				</div>
 								<div ng-repeat="category in event.categories" style='border-style:solid;border-width:1px;border-color:WHITE;background-color:{{categoryColors[category]}}; width:100%; height:8px;'/>
@@ -126,6 +127,15 @@
 					        <div class="modal-body" style='display:inline-block'>
 					        	<div style='float:left; padding-right:40px'>
 					        		<p>
+	        				            <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]" file="newEvent.imageLocation" file-name="imageFileName" data-max-file-size="3">
+	        				                <span>Drop Image Here</span>
+	        				            </div>
+	        				            <div class="image-container">
+	        			                	<img ng-src={{newEvent.imageLocation}} />
+	        				                <span class="file-name">{{imageFileName}}</span>
+	        				            </div>
+	        				        </p>
+					        		<p>
 						        		Date:
 									    <div class="well well-small" ng-model="editedEvent.date" style="display:inline-block;">
 									        <datepicker show-weeks="false"></datepicker>
@@ -133,8 +143,8 @@
 								    </p>
 								</div>
 								<div style='overflow:hidden'>
-									Description<textarea class="form-control" rows="6"></textarea><br>
-									Location<textarea class="form-control" rows="1"></textarea>
+									Description<textarea type="event.description" class="form-control" rows="4" ng-model='editedEvent.description'></textarea><br>
+									Location<textarea type="event.location" class="form-control" rows="1" ng-model='editedEvent.location'></textarea>
 
 								    <p>
 									    Time:
@@ -142,9 +152,28 @@
 										    <timepicker hour-step="1" minute-step="1"></timepicker>
 										</div>
 									</p>
+									<div class="alert alert-warning show-fade" ng-show="tooFewCategories">You must select at least 1 category.</div>
+									<div class="alert alert-danger show-fade" ng-show="tooManyCategories">Select a maximum of 2 categories.</div>
+									<p>Categories (choose 1 or 2): </p>
+									<div class="btn-group btn-group-justified container" data-toggle="buttons">
+									  <label class="btn btn-primary btn-sm" ng-click="toggle('theater')" style='width:20%;'>
+									    <input type="checkbox">Theater
+									  </label>
+									  <label class="btn btn-success btn-sm" ng-click="toggle('talk')" style='width:20%;'>
+									    <input type="checkbox">Talks
+									  </label>
+									  <label class="btn btn-warning btn-sm" ng-click="toggle('social')" style='width:20%;'>
+									    <input type="checkbox">Social
+									  </label>
+									  <label class="btn btn-danger btn-sm" ng-click="toggle('music')" style='width:20%;'>
+									    <input type="checkbox">Music
+									  </label>
+									  <label class="btn btn-info btn-sm" ng-click="toggle('sports')" style='width:20%;'>
+									    <input type="checkbox">Sports
+									  </label>
+									</div>
 								</div>
 								<div class='clear'></div>
-					        </div>
 					        <div class="modal-footer">
 					       		<button class="btn btn-primary" ng-click="cancelEdits()">Cancel</button>
 					        	<button class="btn btn-warning" ng-click="submitEdits()">Update Event</button>

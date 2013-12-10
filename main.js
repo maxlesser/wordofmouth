@@ -164,6 +164,9 @@ function EventModalCon($scope, $modalInstance, user, event, colors) {
   $scope.event = event;
   $scope.editMode = false;
   $scope.editedEvent = {};
+  $scope.categories = [];
+  $scope.tooManyCategories = false;
+  $scope.tooFewCategories = true;
 
   $scope.enterEditMode = function () {
     $scope.editedEvent = angular.copy($scope.event);
@@ -176,6 +179,15 @@ function EventModalCon($scope, $modalInstance, user, event, colors) {
     $scope.event.date.setMinutes($scope.event.time.getMinutes());
     $scope.editMode = false;
   };
+
+  $scope.toggle = function(category) {
+    if ($scope.categories.indexOf(category) < 0)
+      $scope.categories.push(category);
+    else
+      $scope.categories.splice($scope.categories.indexOf(category), 1);
+    $scope.tooManyCategories = $scope.categories.length >2;
+    $scope.tooFewCategories = $scope.categories.length == 0;
+  }
 
   $scope.cancelEdits = function() {
     $scope.editMode = false;
