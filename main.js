@@ -1,26 +1,39 @@
-angular.module('myApp', ['ngAnimate', 'ui.bootstrap', 'omr.angularFileDnD']);
+angular.module('myApp', ['ngAnimate', 'ui.bootstrap', 'omr.angularFileDnD'])
+  .service('myService', function () {
+      return {
+        globalCategoryColors : {talk:"#5cb85c", sports:"#5bc0de", social:"#f0ad4e", theater:"#428bca", music:"#d9534f"},
+        globalUsers : [
+            {email:'wheels', password:'max'}
+          ],
+        globalEvents : [
+            {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', description:'this is a test event! it is being used for test purposes.', categories:['talk', 'sports'], name:"1", date:new Date(), time:'', location:"LOCATION", ownerEmail:'wheels'},
+            ],
+        globalCurrentUser: {email:'', password:''} ,
 
-globalCategoryColors = {talk:"#5cb85c", sports:"#5bc0de", social:"#f0ad4e", theater:"#428bca", music:"#d9534f"};
-globalUsers = [
-    {email:'wheels', password:'max'}
-  ];
-globalEvents = [
-    {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', description:'this is a test event! it is being used for test purposes.', categories:['talk', 'sports'], name:"1", date:new Date(), time:'', location:"LOCATION", ownerEmail:'wheels'},
-    ];
-globalCurrentUser = {};
+        setGlobalCurrentUser : function(user)
+        {
+          globalCurrentUser.email = user.email;
+          globalCurrentUser.password = user.password;
+        }
+      }
+    });
 
-function WomCon($scope, $modal) {
+function WomCon($scope, $modal, myService) {
 
-  $scope.events = globalEvents;
-  $scope.users = globalUsers
-  $scope.categoryColors = globalCategoryColors;
-  $scope.currentUser = globalCurrentUser;
 
   $scope.theaterFilter = '';
   $scope.talkFilter = '';
   $scope.socialFilter = '';
   $scope.musicFilter = '';
   $scope.sportsFilter = '';
+
+  $scope.events = myService.globalEvents;
+  $scope.users = myService.globalUsers;
+  $scope.categoryColors = myService.globalCategoryColors;
+  $scope.currentUser = myService.globalCurrentUser;
+  
+  $scope.categoryFilter = '';
+
   $scope.searchFilter = '';
   $scope.date = 'date';
 
@@ -130,50 +143,24 @@ function WomCon($scope, $modal) {
       for (var i = 0; i < $scope.users.length; i++) {
         if($scope.users[i].email == user.email && $scope.users[i].password == user.password)
         {
-          console.log('you successfully logged in!');
           $scope.currentUser = user;
           return;
         }
       }
 
-      console.log('unable to log in - please check email/password combination.');
+      console.log("error validating");
     }, function () {
       // $log.info('Modal dismissed at: ' + new Date());
     });
   };
 }
 
-function LoginCon($scope, $modalInstance) {
 
-  $scope.user = {email:'', password:''};
 
-  $scope.ok = function () {
-    $modalInstance.close($scope.user);
-  };
-
-  $scope.close = function () {
-    $modalInstance.dismiss('cancel');
-  };
-}
-
-function CreateAccountCon($scope, $modalInstance) {
-
-  $scope.user = {email:'', password:''};
-
-  $scope.ok = function () {
-    $modalInstance.close($scope.user);
-  };
-
-  $scope.close = function () {
-    $modalInstance.dismiss('cancel');
-  };
-}
-
-function EventModalCon($scope, $modalInstance, user, event) {
+function EventModalCon($scope, $modalInstance, myService, user, event) {
 
   $scope.currentUser = user;
-  $scope.categoryColors = globalCategoryColors;
-
+  $scope.categoryColors = myService.globalCategoryColors;
   $scope.event = event;
   $scope.editMode = false;
   $scope.editedEvent = {};
@@ -199,7 +186,30 @@ function EventModalCon($scope, $modalInstance, user, event) {
   };
 }
 
-function ShoutModalCon($scope, $modalInstance) {
+function LoginCon($scope, $modalInstance, myService) {
+  $scope.user = {email:'', password:''};
+
+  $scope.ok = function () {
+    $modalInstance.close($scope.user);
+  };
+
+  $scope.close = function () {
+    $modalInstance.dismiss('cancel');
+  };
+}
+
+function CreateAccountCon($scope, $modalInstance, myService) {
+
+  $scope.ok = function () {
+    $modalInstance.close($scope.user);
+  };
+
+  $scope.close = function () {
+    $modalInstance.dismiss('cancel');
+  };
+}
+
+function ShoutModalCon($scope, $modalInstance, myService) {
 
   $scope.newEvent = {categories:{talk:'#ff9900', sport:'#FF0000'}};
   $scope.image = null;
@@ -213,6 +223,7 @@ function ShoutModalCon($scope, $modalInstance) {
     $modalInstance.dismiss('cancel');
   };
 }
+
 
 // function TodoCtrl($scope) {
 //   $scope.todos = [
