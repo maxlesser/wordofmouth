@@ -133,7 +133,7 @@
 						<!-- EDITMODE -->
 						<div class="edit-mode" ng-show="editMode">
 							<div class="modal-header">
-					            <h3><p>Name:<input type="event.name" ng-model='editedEvent.name'></p></h3>
+					            <h3><p>Event Name &nbsp;<input type="event.name" ng-model='editedEvent.name'></p></h3>
 					        </div>
 					        <div class="modal-body" style='display:inline-block'>
 					        	<div style='float:left; padding-right:40px'>
@@ -143,12 +143,12 @@
 	        				                <span>Drop Image Here</span>
 	        				            </div>
 	        				            <div class="thumbnail image-container show-fade" ng-show="editedEvent.imageLocation">
-	        			                	<img ng-src={{editedEvent.imageLocation}} />
+	        			                	<img width="200px" height="200px" ng-src={{editedEvent.imageLocation}} />
 	        				                <span class="file-name">{{imageFileName}}</span>
 	        				            </div>
 	        				        </p>
 					        		<p>
-						        		Date:
+						        		Date
 									    <div class="well well-small" ng-model="editedEvent.date" style="display:inline-block;">
 									        <datepicker show-weeks="false"></datepicker>
 									    </div>
@@ -156,17 +156,17 @@
 								</div>
 								<div style='overflow:hidden'>
 									Description<textarea type="event.description" class="form-control" rows="4" ng-model='editedEvent.description'></textarea><br>
-									Location<textarea type="event.location" class="form-control" rows="1" ng-model='editedEvent.location'></textarea>
+									Location<textarea type="event.location" class="form-control" rows="1" ng-model='editedEvent.location'></textarea><br>
 
 								    <p>
-									    Time:
+									    Time
 								        <div ng-model="editedEvent.time" ng-model="editedEvent.time" class="well well-small" style="display:inline-block;">
 										    <timepicker hour-step="1" minute-step="1"></timepicker>
 										</div>
 									</p>
 									<div class="alert alert-warning show-fade" ng-show="tooFewCategories">You must select at least 1 category.</div>
 									<div class="alert alert-danger show-fade" ng-show="tooManyCategories">Select a maximum of 2 categories.</div>
-									<p>Categories (choose 1 or 2): </p>
+									<p>Categories (choose 1 or 2)</p>
 									<div class="btn-group btn-group-justified container" data-toggle="buttons">
 									  <label class="btn btn-primary btn-sm" ng-click="toggle('theater')" style='width:20%;'>
 									    <input type="checkbox">Theater
@@ -196,28 +196,67 @@
 		    </script>
 		    <script type="text/ng-template" id="shoutContent.html">
 		    	<div class="modal-dialog">
-					<div class="modal-content">
-				        <div class="modal-header">
-				            <h3>Im a modal!</h3>
+		    		<div class="modal-content">
+				    	<div class="modal-header">
+				            <h3><p>Event Name &nbsp;<input ng-model='editedEvent.name'></p></h3>
 				        </div>
-				        <div class="modal-body">
-				            <p>Name:<input ng-model='newEvent.name'></p>
-				            <p>Date:<input ng-model='newEvent.date'></p>
-				            <p>Location<input ng-model='newEvent.location'></p>
-				            <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]" file="newEvent.imageLocation" file-name="imageFileName" data-max-file-size="3">
-				                <span>Drop Image Here</span>
-				            </div>
-				            <div class="image-container">
-			                	<img ng-src={{newEvent.imageLocation}} />
-				                <span class="file-name">{{imageFileName}}</span>
-				            </div>
-				        </div>
+				        <div class="modal-body" style='display:inline-block'>
+				        	<div style='float:left; padding-right:40px'>
+				        		<button class='btn btn-warning' ng-click="clearImage()" style="float: right;" ng-show="editedEvent.imageLocation">Clear Image</button>
+				        		<p>
+						            <div class="dropzone show-fade" file-dropzone="[image/png, image/jpeg, image/gif]" file="editedEvent.imageLocation" file-name="imageFileName" data-max-file-size="3" ng-hide="editedEvent.imageLocation">
+						                <span>Drop Image Here</span>
+						            </div>
+						            <div class="thumbnail image-container show-fade" ng-show="editedEvent.imageLocation">
+					                	<img width="200px" height="200px" ng-src={{editedEvent.imageLocation}} />
+						                <span class="file-name">{{imageFileName}}</span>
+						            </div>
+						        </p>
+				        		<p>
+					        		Date
+								    <div class="well well-small" ng-model="editedEvent.date" style="display:inline-block;">
+								        <datepicker show-weeks="false"></datepicker>
+								    </div>
+							    </p>
+							</div>
+							<div style='overflow:hidden'>
+								Description<textarea class="form-control" rows="4" ng-model='editedEvent.description'></textarea><br>
+								Location<textarea class="form-control" rows="1" ng-model='editedEvent.location'></textarea><br>
+
+							    <p>
+								    Time
+							        <div ng-model="editedEvent.time" ng-model="editedEvent.time" class="well well-small" style="display:inline-block;">
+									    <timepicker hour-step="1" minute-step="1"></timepicker>
+									</div>
+								</p>
+								<div class="alert alert-warning show-fade" ng-show="tooFewCategories">You must select at least 1 category.</div>
+								<div class="alert alert-danger show-fade" ng-show="tooManyCategories">Select a maximum of 2 categories.</div>
+								<p>Categories (choose 1 or 2)</p>
+								<div class="btn-group btn-group-justified container" data-toggle="buttons">
+								  <label class="btn btn-primary btn-sm" ng-click="toggle('theater')" style='width:20%;'>
+								    <input type="checkbox">Theater
+								  </label>
+								  <label class="btn btn-success btn-sm" ng-click="toggle('talk')" style='width:20%;'>
+								    <input type="checkbox">Talks
+								  </label>
+								  <label class="btn btn-warning btn-sm" ng-click="toggle('social')" style='width:20%;'>
+								    <input type="checkbox">Social
+								  </label>
+								  <label class="btn btn-danger btn-sm" ng-click="toggle('music')" style='width:20%;'>
+								    <input type="checkbox">Music
+								  </label>
+								  <label class="btn btn-info btn-sm" ng-click="toggle('sports')" style='width:20%;'>
+								    <input type="checkbox">Sports
+								  </label>
+								</div>
+							</div>
+							<div class='clear'></div>
 				        <div class="modal-footer">
-				            <button class="btn btn-primary" ng-click="ok()">OK</button>
-				            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+				       		<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+				        	<button class="btn btn-danger" ng-click="submit()">Submit</button>
 				        </div>
-					</div>
-				</div>
+				    </div>
+			    </div>
 		    </script>
 		    <script type="text/ng-template" id="createAccount.html">
 		    	<div class="modal-dialog">

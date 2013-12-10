@@ -98,6 +98,19 @@ function WomCon($scope, $modal) {
       controller: ShoutModalCon
     });
 
+    modalInstance.opened.then(function () {
+      setTimeout(function() {
+
+        document.getElementsByClassName('btn pull-right')[0].className = 'pull-right glyphicon glyphicon-chevron-right'; 
+        document.getElementsByClassName('btn pull-left')[0].className = 'pull-left glyphicon glyphicon-chevron-left';
+
+        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
+        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
+        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
+        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
+      }, 1);
+    });
+
     modalInstance.result.then(function (newEvent) {
       newEvent.owner = $scope.currentUser.email;
       $scope.events.push(newEvent);
@@ -171,7 +184,6 @@ function EventModalCon($scope, $modalInstance, user, event, colors) {
   $scope.event = event;
   $scope.editMode = false;
   $scope.editedEvent = {};
-  $scope.categories = [];
   $scope.tooManyCategories = false;
   $scope.tooFewCategories = true;
 
@@ -188,12 +200,12 @@ function EventModalCon($scope, $modalInstance, user, event, colors) {
   };
 
   $scope.toggle = function(category) {
-    if ($scope.categories.indexOf(category) < 0)
-      $scope.categories.push(category);
+    if ($scope.editedEvent.categories.indexOf(category) < 0)
+      $scope.editedEvent.categories.push(category);
     else
-      $scope.categories.splice($scope.categories.indexOf(category), 1);
-    $scope.tooManyCategories = $scope.categories.length >2;
-    $scope.tooFewCategories = $scope.categories.length == 0;
+      $scope.editedEvent.categories.splice($scope.editedEvent.categories.indexOf(category), 1);
+    $scope.tooManyCategories = $scope.editedEvent.categories.length >2;
+    $scope.tooFewCategories = $scope.editedEvent.categories.length == 0;
   }
 
   $scope.clearImage = function () {
@@ -237,17 +249,27 @@ function CreateAccountCon($scope, $modalInstance) {
 
 function ShoutModalCon($scope, $modalInstance) {
 
-  $scope.newEvent = {categories:{talk:'#ff9900', sport:'#FF0000'}};
-  $scope.image = null;
-  $scope.imageFileName = "";
+  $scope.editedEvent = {};
+  $scope.editedEvent.categories = [];
+  $scope.tooManyCategories = false;
+  $scope.tooFewCategories = true;
 
-  $scope.ok = function () {
-    $modalInstance.close($scope.newEvent);
+  $scope.submit = function () {
+    $modalInstance.close($scope.editedEvent);
   };
 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
+
+  $scope.toggle = function(category) {
+    if ($scope.editedEvent.categories.indexOf(category) < 0)
+      $scope.editedEvent.categories.push(category);
+    else
+      $scope.editedEvent.categories.splice($scope.editedEvent.categories.indexOf(category), 1);
+    $scope.tooManyCategories = $scope.editedEvent.categories.length >2;
+    $scope.tooFewCategories = $scope.editedEvent.categories.length == 0;
+  }
 }
 
 
