@@ -41,19 +41,19 @@
 				</div>
 				<br>
 				<div class="btn-group btn-group-justified container" data-toggle="buttons">
-				  <label class="btn btn-primary btn-lg" ng-click="toggleTheaterFilter()" style='width:20%;'>
+				  <label class="btn btn-primary btn-lg" ng-click="toggleFilter('theater')" style='width:20%;'>
 				    <input type="checkbox">Theater
 				  </label>
-				  <label class="btn btn-success btn-lg" ng-click="toggleTalkFilter()" style='width:20%;'>
+				  <label class="btn btn-success btn-lg" ng-click="toggleFilter('talk')" style='width:20%;'>
 				    <input type="checkbox">Talks
 				  </label>
-				  <label class="btn btn-warning btn-lg" ng-click="toggleSocialFilter()" style='width:20%;'>
+				  <label class="btn btn-warning btn-lg" ng-click="toggleFilter('social')" style='width:20%;'>
 				    <input type="checkbox">Social
 				  </label>
-				  <label class="btn btn-danger btn-lg" ng-click="toggleMusicFilter()" style='width:20%;'>
+				  <label class="btn btn-danger btn-lg" ng-click="toggleFilter('music')" style='width:20%;'>
 				    <input type="checkbox">Music
 				  </label>
-				  <label class="btn btn-info btn-lg" ng-click="toggleSportFilter()" style='width:20%;'>
+				  <label class="btn btn-info btn-lg" ng-click="toggleFilter('sports')" style='width:20%;'>
 				    <input type="checkbox">Sports
 				  </label>
 				</div>
@@ -62,7 +62,7 @@
 					<h1>Today</h1>
 
 					<div class="row">
-						<div class="col-xs-6 col-md-3 repeat-fade" ng-repeat="event in events | filter:theaterFilter | filter:sportsFilter | filter:musicFilter | filter:talkFilter | filter:socialFilter | filter:searchFilter | orderBy:date track by $index">
+						<div class="col-xs-6 col-md-3 repeat-fade" ng-repeat="event in events | filter:myFilter(event) | orderBy:date track by $index">
 					    	<div class="thumbnail" ng-mouseenter="showOverlay(event)" ng-mouseleave="hideOverlay(event)" ng-click="openEventModal(event)">
 					    		<a class="thumbnail inner-thumbnail" href='#'>
 					    			<img src="{{event.imageLocation}}"/>

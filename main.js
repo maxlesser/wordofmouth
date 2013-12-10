@@ -2,12 +2,6 @@ angular.module('myApp', ['ngAnimate', 'ui.bootstrap', 'omr.angularFileDnD']);
 
 function WomCon($scope, $modal) {
 
-  $scope.theaterFilter = '';
-  $scope.talkFilter = '';
-  $scope.socialFilter = '';
-  $scope.musicFilter = '';
-  $scope.sportsFilter = '';
-
   $scope.events = [
             {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', description:'this is a test event! it is being used for test purposes.', categories:['talk', 'sports'], name:"1", date:new Date(), time:'', location:"LOCATION", ownerEmail:'wheels'},
             ];
@@ -17,41 +11,29 @@ function WomCon($scope, $modal) {
   $scope.categoryColors = {talk:"#5cb85c", sports:"#5bc0de", social:"#f0ad4e", theater:"#428bca", music:"#d9534f"};
   $scope.currentUser = {email:'', password:''};
 
-  $scope.searchFilter = '';
+  $scope.searchFilter = [];
   $scope.date = 'date';
 
 
-  $scope.toggleTheaterFilter = function() {
-    if($scope.theaterFilter == '')
-      $scope.theaterFilter = 'theater';
-     else
-      $scope.theaterFilter = '';
-  }
-  $scope.toggleSportsFilter = function() {
-    if($scope.sportsFilter == '')
-      $scope.sportsFilter = 'sports';
-     else
-      $scope.sportsFilter = '';
-  }
-  $scope.toggleTalkFilter = function() {
-    if($scope.talkFilter == '')
-      $scope.talkFilter = 'talk';
-     else
-      $scope.talkFilter = '';
-  }
-  $scope.toggleSocialFilter = function() {
-    if($scope.socialFilter == '')
-      $scope.socialFilter = 'social';
-     else
-      $scope.socialFilter = '';
-  }
-  $scope.toggleMusicFilter = function() {
-    if($scope.musicFilter == '')
-      $scope.musicFilter = 'music';
-     else
-      $scope.musicFilter = '';
+  $scope.myFilter = function(event) {
+      return function(event) {
+        if ($scope.searchFilter.length == 0)
+          return true;
+        for (i = 0; i < event.categories.length; ++i) {
+          if ($scope.searchFilter.indexOf(event.categories[i]) >= 0)
+            return true;
+            
+        };
+        return false;
+      } 
   }
 
+  $scope.toggleFilter = function(category) {
+    if ($scope.searchFilter.indexOf(category) < 0)
+      $scope.searchFilter.push(category);
+    else
+      $scope.searchFilter.splice($scope.searchFilter.indexOf(category), 1);
+  }
 
   $scope.showOverlay = function(event) {
   	event.overlay = "true";
