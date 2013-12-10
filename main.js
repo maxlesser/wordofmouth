@@ -3,7 +3,7 @@ angular.module('myApp', ['ngAnimate', 'ui.bootstrap', 'omr.angularFileDnD']);
 function WomCon($scope, $modal) {
 
   $scope.events = [
-            {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', description:'this is a test event! it is being used for test purposes.', categories:['talk', 'sports'], name:"1", date:new Date(), time:new Date(), location:"LOCATION", ownerEmail:'wheels'},
+            {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', description:'this is a test event! it is being used for test purposes.', categories:['talk', 'sports'], name:"1", date:new Date(), time:new Date(), location:"LOCATION", owner:'wheels'},
             ];
   $scope.users = [
             {email:'wheels', password:'max'}
@@ -72,6 +72,7 @@ function WomCon($scope, $modal) {
         document.getElementById('_description').className = '_description'; 
         document.getElementById('_location').className = '_location'; 
         document.getElementById('_start').className = '_start'; 
+        document.getElementById('_end').className = '_end'; 
         addthisevent.refresh();
 
         document.getElementsByClassName('btn pull-right')[0].className = 'pull-right glyphicon glyphicon-chevron-right'; 
@@ -98,6 +99,7 @@ function WomCon($scope, $modal) {
     });
 
     modalInstance.result.then(function (newEvent) {
+      newEvent.owner = $scope.currentUser.email;
       $scope.events.push(newEvent);
     }, function () {
       // $log.info('Modal dismissed at: ' + new Date());

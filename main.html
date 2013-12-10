@@ -72,7 +72,7 @@
 					<h1>Today</h1>
 
 					<div class="row">
-						<div class="col-xs-6 col-md-3 repeat-fade" ng-repeat="event in events | filter:search | filter:myFilter(event) | orderBy:date track by $index">
+						<div class="col-xs-6 col-md-3 repeat-fade col" ng-repeat="event in events | filter:search | filter:myFilter(event) | orderBy:date track by $index">
 					    	<div class="thumbnail" ng-mouseenter="showOverlay(event)" ng-mouseleave="hideOverlay(event)" ng-click="openEventModal(event)">
 					    		<a class="thumbnail inner-thumbnail" href='#'>
 					    			<img src="{{event.imageLocation}}"/>
@@ -107,7 +107,7 @@
 					        	<div style='overflow:hidden;'>
 						            <p><h3>{{event.description}}</h3></p>
 						            <p><h3>{{event.location}}</h3></p>
-						            <p><h3>{{event.date.getMonth()}}/{{event.date.getDate()}}, {{event.date.getYear() + 1900}} at {{event.date.getHours()}}:{{event.date.getMinutes()}}</h3></p>
+						            <p><h3>{{event.date.getMonth()}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} at {{event.time.getHours()}}:{{event.time.getMinutes()}}</h3></p>
 					            </div>
 					        	<div class="clear"></div>
 				            </div>
@@ -118,14 +118,15 @@
 					        <div class="modal-footer">
 						        <a href="http://example.com/link-to-your-event" title="Add to Calendar" class="addthisevent">
 								    Add to Calendar
-								    <span class="_start" id='_start'>{{event.date}}</span>
+								    <span class="_start" id='_start'>{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} {{event.time.getHours()}}:{{event.time.getMinutes()}}</span>
+								    <span class="_end" id='_end'>{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} {{event.time.getHours()+2}}:{{event.time.getMinutes()}}</span>
 								    <span class="_zonecode">15</span>
 								    <span class="_summary" id='_name'>{{event.name}}</span>
 								    <span class="_description" id='_description'>{{event.description}}</span>
 								    <span class="_location" id='_location'>{{event.location}}</span>
 								    <span class="_date_format">DD/MM/YYYY</span>
 								</a>
-					        	<button class="btn btn-warning" ng-click="enterEditMode()" ng-show="{{event.ownerEmail == currentUser.email}}">Edit My Event</button>
+					        	<button class="btn btn-warning" ng-click="enterEditMode()" ng-show="event.owner == currentUser.email">Edit My Event</button>
 					            <button class="btn btn-primary" ng-click="close()">Close</button>
 					        </div>
 						</div>
