@@ -1,25 +1,6 @@
-angular.module('myApp', ['ngAnimate', 'ui.bootstrap', 'omr.angularFileDnD'])
-  .service('myService', function () {
-      return {
-        globalCategoryColors : {talk:"#5cb85c", sports:"#5bc0de", social:"#f0ad4e", theater:"#428bca", music:"#d9534f"},
-        globalUsers : [
-            {email:'wheels', password:'max'}
-          ],
-        globalEvents : [
-            {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', description:'this is a test event! it is being used for test purposes.', categories:['talk', 'sports'], name:"1", date:new Date(), time:'', location:"LOCATION", ownerEmail:'wheels'},
-            ],
-        globalCurrentUser: {email:'', password:''} ,
+angular.module('myApp', ['ngAnimate', 'ui.bootstrap', 'omr.angularFileDnD']);
 
-        setGlobalCurrentUser : function(user)
-        {
-          globalCurrentUser.email = user.email;
-          globalCurrentUser.password = user.password;
-        }
-      }
-    });
-
-function WomCon($scope, $modal, myService) {
-
+function WomCon($scope, $modal) {
 
   $scope.theaterFilter = '';
   $scope.talkFilter = '';
@@ -27,19 +8,50 @@ function WomCon($scope, $modal, myService) {
   $scope.musicFilter = '';
   $scope.sportsFilter = '';
 
-  $scope.events = myService.globalEvents;
-  $scope.users = myService.globalUsers;
-  $scope.categoryColors = myService.globalCategoryColors;
-  $scope.currentUser = myService.globalCurrentUser;
-  
-  $scope.categoryFilter = '';
+  $scope.events = [
+            {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', description:'this is a test event! it is being used for test purposes.', categories:['talk', 'sports'], name:"1", date:new Date(), time:'', location:"LOCATION", ownerEmail:'wheels'},
+            ];
+  $scope.users = [
+            {email:'wheels', password:'max'}
+          ];
+  $scope.categoryColors = {talk:"#5cb85c", sports:"#5bc0de", social:"#f0ad4e", theater:"#428bca", music:"#d9534f"};
+  $scope.currentUser = {email:'', password:''};
 
   $scope.searchFilter = '';
   $scope.date = 'date';
 
-  $scope.changeCategoryFilter = function(category) {
-    $scope.categoryFilter = category;
+
+  $scope.toggleTheaterFilter = function() {
+    if($scope.theaterFilter == '')
+      $scope.theaterFilter = 'theater';
+     else
+      $scope.theaterFilter = '';
   }
+  $scope.toggleSportsFilter = function() {
+    if($scope.sportsFilter == '')
+      $scope.sportsFilter = 'sports';
+     else
+      $scope.sportsFilter = '';
+  }
+  $scope.toggleTalkFilter = function() {
+    if($scope.talkFilter == '')
+      $scope.talkFilter = 'talk';
+     else
+      $scope.talkFilter = '';
+  }
+  $scope.toggleSocialFilter = function() {
+    if($scope.socialFilter == '')
+      $scope.socialFilter = 'social';
+     else
+      $scope.socialFilter = '';
+  }
+  $scope.toggleMusicFilter = function() {
+    if($scope.musicFilter == '')
+      $scope.musicFilter = 'music';
+     else
+      $scope.musicFilter = '';
+  }
+
 
   $scope.showOverlay = function(event) {
   	event.overlay = "true";
@@ -60,6 +72,9 @@ function WomCon($scope, $modal, myService) {
         },
         event: function () {
           return event;
+        },
+        colors: function () {
+          return $scope.categoryColors;
         }
 	    }
 	  });
@@ -157,10 +172,10 @@ function WomCon($scope, $modal, myService) {
 
 
 
-function EventModalCon($scope, $modalInstance, myService, user, event) {
+function EventModalCon($scope, $modalInstance, user, event, colors) {
 
   $scope.currentUser = user;
-  $scope.categoryColors = myService.globalCategoryColors;
+  $scope.categoryColors = colors;
   $scope.event = event;
   $scope.editMode = false;
   $scope.editedEvent = {};
@@ -186,7 +201,7 @@ function EventModalCon($scope, $modalInstance, myService, user, event) {
   };
 }
 
-function LoginCon($scope, $modalInstance, myService) {
+function LoginCon($scope, $modalInstance) {
   $scope.user = {email:'', password:''};
 
   $scope.ok = function () {
@@ -198,7 +213,7 @@ function LoginCon($scope, $modalInstance, myService) {
   };
 }
 
-function CreateAccountCon($scope, $modalInstance, myService) {
+function CreateAccountCon($scope, $modalInstance) {
 
   $scope.ok = function () {
     $modalInstance.close($scope.user);
@@ -209,7 +224,7 @@ function CreateAccountCon($scope, $modalInstance, myService) {
   };
 }
 
-function ShoutModalCon($scope, $modalInstance, myService) {
+function ShoutModalCon($scope, $modalInstance) {
 
   $scope.newEvent = {categories:{talk:'#ff9900', sport:'#FF0000'}};
   $scope.image = null;

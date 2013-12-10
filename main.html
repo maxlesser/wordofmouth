@@ -40,27 +40,21 @@
 					<input id="search-bar" class="form-control" ng-model="searchFilter" placeholder='Search' style='width:50%'/>
 				</div>
 				<br>
-				<!-- <button class='btn btn-primary btn-lg' id='theater' ng-click="changeCategoryFilter('theater')" style='width:20%;'>Theater</button>
-					<button class='btn btn-success btn-lg' id='talks' ng-click="changeCategoryFilter('talk')" style='width:20%;'>Talks</button>
-					<button class='btn btn-warning btn-lg' id='social' ng-click="changeCategoryFilter('social')" style='width:20%;'>Social</button>
-					<button class='btn btn-danger btn-lg' id='music' ng-click="changeCategoryFilter('music')" style='width:20%;'>Music</button>
-					<button class='btn btn-info btn-lg' id='sports' ng-click="changeCategoryFilter('sport')" style='width:20%;'>Sports</button> -->
-
 				<div class="btn-group btn-group-justified container" data-toggle="buttons">
-				  <label class="btn btn-primary btn-lg" style='width:20%;'>
-				    <input type="checkbox" ng-click="changeCategoryFilter('theater')">Theater
+				  <label class="btn btn-primary btn-lg" ng-click="toggleTheaterFilter()" style='width:20%;'>
+				    <input type="checkbox">Theater
 				  </label>
-				  <label class="btn btn-success btn-lg" style='width:20%;'>
-				    <input type="checkbox" ng-click="changeCategoryFilter('talk')">Talks
+				  <label class="btn btn-success btn-lg" ng-click="toggleTalkFilter()" style='width:20%;'>
+				    <input type="checkbox">Talks
 				  </label>
-				  <label class="btn btn-warning btn-lg" style='width:20%;'>
-				    <input type="checkbox" ng-click="changeCategoryFilter('social')">Social
+				  <label class="btn btn-warning btn-lg" ng-click="toggleSocialFilter()" style='width:20%;'>
+				    <input type="checkbox">Social
 				  </label>
-				  <label class="btn btn-danger btn-lg" style='width:20%;'>
-				    <input type="checkbox" ng-click="changeCategoryFilter('music')">Music
+				  <label class="btn btn-danger btn-lg" ng-click="toggleMusicFilter()" style='width:20%;'>
+				    <input type="checkbox">Music
 				  </label>
-				  <label class="btn btn-info btn-lg" style='width:20%;'>
-				    <input type="checkbox" ng-click="changeCategoryFilter('sport')">Sports
+				  <label class="btn btn-info btn-lg" ng-click="toggleSportFilter()" style='width:20%;'>
+				    <input type="checkbox">Sports
 				  </label>
 				</div>
 
@@ -68,7 +62,7 @@
 					<h1>Today</h1>
 
 					<div class="row">
-						<div class="col-xs-6 col-md-3 repeat-fade" ng-repeat="event in events | filter:categoryFilter | filter:searchFilter | orderBy:date track by $index">
+						<div class="col-xs-6 col-md-3 repeat-fade" ng-repeat="event in events | filter:theaterFilter | filter:sportsFilter | filter:musicFilter | filter:talkFilter | filter:socialFilter | filter:searchFilter | orderBy:date track by $index">
 					    	<div class="thumbnail" ng-mouseenter="showOverlay(event)" ng-mouseleave="hideOverlay(event)" ng-click="openEventModal(event)">
 					    		<a class="thumbnail inner-thumbnail" href='#'>
 					    			<img src="{{event.imageLocation}}"/>
