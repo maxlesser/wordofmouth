@@ -31,7 +31,7 @@
 								<button class='btn btn-lg' id='account-button' ng-click="openCreateAccountModal()" ng-show="currentUser.email == ''">New Account!</button>
 								<button class='btn btn-lg' id='login-button' ng-click="openLoginModal()" ng-show="currentUser.email == ''">Log In!</button>
 								<button class='btn btn-lg' id='id-button' disabled='true' ng-hide="currentUser.email == ''">{{currentUser.email}}</button>
-								<button class='btn btn-lg' id='logout-button' ng-click="openLogoutModal()" ng-hide="currentUser.email == ''">Log Out!</button>
+								<button class='btn btn-lg' id='logout-button' ng-click="logout()" ng-hide="currentUser.email == ''">Log Out!</button>
 							</div>
 							<br>
 							<h3 ng-show="currentUser.email == ''">Log in to post an event!</h3>
@@ -102,7 +102,7 @@
 					        </div>
 					        <div class="modal-body" style='display:inline-block'>
 					        	<div style='float:left;'>
-						        	<img src="{{event.imageLocation}}"/>
+						        	<img width='300px' height='300px' src="{{event.imageLocation}}"/>
 					        	</div>
 					        	<div style='overflow:hidden;'>
 						            <p><h3>{{event.description}}</h3></p>

@@ -3,7 +3,7 @@ angular.module('myApp', ['ngAnimate', 'ui.bootstrap', 'omr.angularFileDnD']);
 function WomCon($scope, $modal) {
 
   $scope.events = [
-            {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', description:'this is a test event! it is being used for test purposes.', categories:['talk', 'sports'], name:"1", date:new Date(), time:'', location:"LOCATION", ownerEmail:'wheels'},
+            {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', description:'this is a test event! it is being used for test purposes.', categories:['talk', 'sports'], name:"1", date:new Date(), time:new Date(), location:"LOCATION", ownerEmail:'wheels'},
             ];
   $scope.users = [
             {email:'wheels', password:'max'}
@@ -33,6 +33,10 @@ function WomCon($scope, $modal) {
       $scope.searchFilter.push(category);
     else
       $scope.searchFilter.splice($scope.searchFilter.indexOf(category), 1);
+  }
+
+  $scope.logout = function() {
+    $scope.currentUser = {email:'', password:''};
   }
 
   $scope.showOverlay = function(event) {
