@@ -89,6 +89,7 @@ function WomCon($scope, $modal) {
   $scope.openShoutModal = function(event) {
     var modalInstance = $modal.open({
       templateUrl: 'shoutContent.html',
+      windowClass: 'shoutModal',
       controller: ShoutModalCon
     });
 
@@ -200,6 +201,7 @@ function EventModalCon($scope, $modalInstance, user, event, colors) {
 
 function LoginCon($scope, $modalInstance) {
   $scope.user = {email:'', password:''};
+  $scope.emailAction = '@brown.edu';
 
   $scope.ok = function () {
     $modalInstance.close($scope.user);
@@ -211,6 +213,7 @@ function LoginCon($scope, $modalInstance) {
 }
 
 function CreateAccountCon($scope, $modalInstance) {
+  $scope.user = {email:'', password:''};
   $scope.emailAction = '@brown.edu';
 
   $scope.ok = function () {

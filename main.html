@@ -26,18 +26,28 @@
 
 				<div class='container'>
 					<div class="jumbotron" id='header-div'>
+						<div style='float:right'>
+							<div style='float:right'>
+								<button class='btn btn-lg' id='account-button' ng-click="openCreateAccountModal()" ng-show="currentUser.email == ''">New Account!</button>
+								<button class='btn btn-lg' id='login-button' ng-click="openLoginModal()" ng-show="currentUser.email == ''">Log In!</button>
+								<button class='btn btn-lg' id='id-button' disabled='true' ng-hide="currentUser.email == ''">{{currentUser.email}}</button>
+								<button class='btn btn-lg' id='logout-button' ng-click="openLogoutModal()" ng-hide="currentUser.email == ''">Log Out!</button>
+							</div>
+							<br>
+							<h3 ng-show="currentUser.email == ''">Log in to post an event!</h3>
+							<h3 ng-hide="currentUser.email == ''">Click here to post an event!</h3>
+
+							<div style='float:right'>
+								<button class='btn btn-lg' id='shout-button' ng-click="openShoutModal()" ng-hide="currentUser.email == ''">Shout!</button>
+							</div>
+						</div>
 						<h1>Word of Mouth</h1>
-						<h2>Click here to post an event</h2>
-						<button class='btn btn-lg' id='shout-button' ng-click="openShoutModal()">Shout!</button>
-						<button class='btn btn-lg' id='account-button' ng-click="openCreateAccountModal()" ng-show="currentUser.email == ''">New Account!</button>
-						<button class='btn btn-lg' id='login-button' ng-click="openLoginModal()" ng-show="currentUser.email == ''">Log In!</button>
-						<button class='btn btn-lg' id='id-button' disabled='true' ng-hide="currentUser.email == ''">{{currentUser.email}}</button>
-						<button class='btn btn-lg' id='logout-button' ng-click="openLogoutModal()" ng-hide="currentUser.email == ''">Log Out!</button>
+						<h2>The Premiere College Hill Event Website</h2>
 					</div>
 				<div>
 				<div class='navbar-form container' style='text-align:center'>
 					<span class="glyphicon glyphicon-search"></span>
-					<input id="search-bar" class="form-control" ng-model="searchFilter" placeholder='Search' style='width:50%'/>
+					<input id="search-bar" class="form-control" ng-model="search" placeholder='Search' style='width:50%'/>
 				</div>
 				<br>
 				<div class="btn-group btn-group-justified container" data-toggle="buttons">
@@ -62,7 +72,7 @@
 					<h1>Today</h1>
 
 					<div class="row">
-						<div class="col-xs-6 col-md-3 repeat-fade" ng-repeat="event in events | filter:myFilter(event) | orderBy:date track by $index">
+						<div class="col-xs-6 col-md-3 repeat-fade" ng-repeat="event in events | filter:search | filter:myFilter(event) | orderBy:date track by $index">
 					    	<div class="thumbnail" ng-mouseenter="showOverlay(event)" ng-mouseleave="hideOverlay(event)" ng-click="openEventModal(event)">
 					    		<a class="thumbnail inner-thumbnail" href='#'>
 					    			<img src="{{event.imageLocation}}"/>

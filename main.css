@@ -35,6 +35,13 @@
   left:30%;
   min-width:500px;
 }
+.shoutModal {
+  display: block;
+  width:80%;
+  height:100%;
+  left:10%;
+  min-width:500px;
+}
 .modal-dialog {
   width:100%;
   min-width:500px;
