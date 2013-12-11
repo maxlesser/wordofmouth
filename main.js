@@ -54,8 +54,6 @@ function WomCon($scope, $modal) {
       var end = new Date();
       end.setDate(end.getDate()+1);
 
-      console.log(event.date.getMilliseconds());
-      console.log(start.getMilliseconds());
       if(event.date.getTime() >= start.getTime() && event.date.getTime() < end.getTime())
         return true;
       else
@@ -69,8 +67,6 @@ function WomCon($scope, $modal) {
       var end = new Date();
       end.setDate(end.getDate()+2);
 
-      console.log(event.date.getMilliseconds());
-      console.log(start.getMilliseconds());
       if(event.date.getTime() >= start.getTime() && event.date.getTime() < end.getTime())
         return true;
       else
@@ -146,7 +142,6 @@ function WomCon($scope, $modal) {
 
     modalInstance.opened.then(function () {
       setTimeout(function() {
-
         document.getElementsByClassName('btn pull-right')[0].className = 'pull-right glyphicon glyphicon-chevron-right'; 
         document.getElementsByClassName('btn pull-left')[0].className = 'pull-left glyphicon glyphicon-chevron-left';
         document.getElementsByClassName('btn pull-right')[0].className = 'pull-right glyphicon glyphicon-chevron-right'; 
@@ -186,7 +181,7 @@ function WomCon($scope, $modal) {
       for (var i = 0; i < $scope.users.length; i++) {
         if($scope.users[i].email == user.email)
         {
-          console.log('That email is already in use!!');
+          alert("This email is already in use! Try again.");
           return;
         }
       };
@@ -220,7 +215,7 @@ function WomCon($scope, $modal) {
         }
       }
 
-      console.log("error validating");
+      alert("Error validating email/password combination.");
     }, function () {
       // $log.info('Modal dismissed at: ' + new Date());
     });
@@ -242,6 +237,21 @@ function EventModalCon($scope, $modalInstance, user, event, colors) {
   $scope.enterEditMode = function () {
     $scope.editedEvent = angular.copy($scope.event);
     $scope.editMode = true;
+    setTimeout(function() {
+        document.getElementsByClassName('btn pull-right')[0].className = 'pull-right glyphicon glyphicon-chevron-right'; 
+        document.getElementsByClassName('btn pull-left')[0].className = 'pull-left glyphicon glyphicon-chevron-left';
+        document.getElementsByClassName('btn pull-right')[0].className = 'pull-right glyphicon glyphicon-chevron-right'; 
+        document.getElementsByClassName('btn pull-left')[0].className = 'pull-left glyphicon glyphicon-chevron-left';
+
+        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
+        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
+        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
+        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
+        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
+        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
+        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
+        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
+      }, 1);
   };
 
   $scope.submitEdits = function() {
@@ -257,20 +267,6 @@ function EventModalCon($scope, $modalInstance, user, event, colors) {
         document.getElementById('_start').className = '_start'; 
         document.getElementById('_end').className = '_end'; 
         addthisevent.refresh();
-
-        document.getElementsByClassName('btn pull-right')[0].className = 'pull-right glyphicon glyphicon-chevron-right'; 
-        document.getElementsByClassName('btn pull-left')[0].className = 'pull-left glyphicon glyphicon-chevron-left';
-        document.getElementsByClassName('btn pull-right')[0].className = 'pull-right glyphicon glyphicon-chevron-right'; 
-        document.getElementsByClassName('btn pull-left')[0].className = 'pull-left glyphicon glyphicon-chevron-left';
-
-        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
-        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
-        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
-        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
-        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
-        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
-        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
-        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
       }, 1);
   };
 
