@@ -79,7 +79,7 @@
 					    		<div class="thumbnail inner-thumbnail event-overlay col-xs-12 col-md-12 show-fade" ng-show="event.overlay">
 					    			<div class="event-details"> 
 						    			<p class="event-details-name">{{event.name}}</p>
-	                					<p class="event-details-date">{{event.date}}</p>
+	                					<p class="event-details-date">{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} at {{event.time.getHours()+1}}:{{event.time.getMinutes()+1}}</p>
 	                					<p class="event-details-location">{{event.location}}</p>
 	                					<p class="event-details-info">(Click for more details)</p>
 	                				</div>
@@ -100,13 +100,13 @@
 						    		</a>
 						    		<div class="thumbnail inner-thumbnail event-overlay col-xs-12 col-md-12 show-fade" ng-show="event.overlay">
 						    			<div class="event-details"> 
-							    			<span class="event-details-name">{{event.name}}</span>
-		                					<span class="event-details-date">{{event.date}}</span>
-		                					<span class="event-details-location">{{event.location}}</span>
-		                					<span class="event-details-description">{{event.description}}</span>
+							    			<p class="event-details-name">{{event.name}}</p>
+		                					<p class="event-details-date">{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} at {{event.time.getHours()+1}}:{{event.time.getMinutes()+1}}</p>
+		                					<p class="event-details-location">{{event.location}}</p>
+		                					<p class="event-details-info">(Click for more details)</p>
 		                				</div>
-		            				</div>
-		            				<div>
+	                				</div>
+	                				<div>
 										<div ng-repeat="category in event.categories" style='width:{{(3-event.categories.length)*50}}%; float:left; border-style:solid; border-width:1px;border-color:WHITE;background-color:{{categoryColors[category]}}; height:8px;'/>
 									</div>
 						    	</div>
@@ -122,10 +122,10 @@
 						    		</a>
 						    		<div class="thumbnail inner-thumbnail event-overlay col-xs-12 col-md-12 show-fade" ng-show="event.overlay">
 						    			<div class="event-details"> 
-							    			<span class="event-details-name">{{event.name}}</span>
-		                					<span class="event-details-date">{{event.date}}</span>
-		                					<span class="event-details-location">{{event.location}}</span>
-		                					<span class="event-details-description">{{event.description}}</span>
+							    			<p class="event-details-name">{{event.name}}</p>
+		                					<p class="event-details-date">{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} at {{event.time.getHours()+1}}:{{event.time.getMinutes()+1}}</p>
+		                					<p class="event-details-location">{{event.location}}</p>
+		                					<p class="event-details-info">(Click for more details)</p>
 		                				</div>
 	                				</div>
 	                				<div>
@@ -152,7 +152,7 @@
 					        	</div>
 					        	<div style='overflow:hidden;'>
 						            <p class="event-view-description">{{event.description}}</p>
-						            <p class="event-view-date">{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} at {{event.time.getHours()}}:{{event.time.getMinutes()}}</p>
+						            <p class="event-view-date">{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} at {{event.time.getHours()+1}}:{{event.time.getMinutes()+1}}</p>
 						            <p class="event-view-location">{{event.location}}</p>
 					            </div>
 					        	<div class="clear"></div>
@@ -164,8 +164,8 @@
 					        <div class="modal-footer">
 						        <a href="http://example.com/link-to-your-event" title="Add to Calendar" class="addthisevent">
 								    Add to Calendar
-								    <span class="_start" id='_start'>{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} {{event.time.getHours()}}:{{event.time.getMinutes()}}</span>
-								    <span class="_end" id='_end'>{{event.endDate.getMonth()+1}}-{{event.endDate.getDate()}}-{{event.endDate.getFullYear()}} {{event.endTime.getHours()}}:{{event.endTime.getMinutes()}}</span>
+								    <span class="_start" id='_start'>{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} {{event.time.getHours()+1}}:{{event.time.getMinutes()+1}}</span>
+								    <span class="_end" id='_end'>{{event.endDate.getMonth()+1}}-{{event.endDate.getDate()}}-{{event.endDate.getFullYear()}} {{event.endTime.getHours()+1}}:{{event.endTime.getMinutes()+1}}</span>
 								    <span class="_zonecode">15</span>
 								    <span class="_summary" id='_name'>{{event.name}}</span>
 								    <span class="_description" id='_description'>{{event.description}}</span>
