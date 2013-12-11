@@ -61,22 +61,25 @@
 .event-details {
   text-align: center;
   color: #fff;
+  font-size: 14px;
 }
 
 .event-details-name {
-
+  font-size: 16px;
+  margin-top: 25%;
 }
 
 .event-details-date {
-
+  top: 25%;
 }
 
 .event-details-location{
-
+  top: 40%;
 }
 
 .event-details-info {
-
+  bottom: 15%;
+  font-size:12px;
 }
 
 .repeat-fade.ng-enter,
