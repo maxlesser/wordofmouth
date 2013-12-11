@@ -1,18 +1,24 @@
-/*.btn-primary:focus {
-  background-color: #000;
-}
-.btn-success:focus {
-  background-color: #000;
-}
-.btn-warning:focus {
-  background-color: #000;
-}
-.btn-info:focus {
-  background-color: #000;
-}
-.btn-danger:focus {
-  background-color: #000;
-}*/
+.btn-blue {
+    .btn-pseudo-states(@yourColor, @yourColorDarker);
+ }
+
+ .btn-green {
+    .btn-pseudo-states(@yourColor, @yourColorDarker);
+ }
+
+ .btn-yellow {
+    .btn-pseudo-states(@yourColor, @yourColorDarker);
+ }
+
+ .btn-red {
+    .btn-pseudo-states(@yourColor, @yourColorDarker);
+ }
+
+ .btn-cyan {
+    .btn-pseudo-states(@yourColor, @yourColorDarker);
+ }
+
+
 
 .viewEventModal {
   display: block;
