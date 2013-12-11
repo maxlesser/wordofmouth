@@ -35,6 +35,10 @@
     display: table;
     content: " ";
 }
+
+.modal-body {
+  width: 100%;
+}
 .modal-header:before, .modal-header:after {
   display: table;
   content: " ";
@@ -94,7 +98,8 @@
 }
 
 .event-view-description, .event-view-date, .event-view-location {
-  margin-right: 8%;
+  text-align: right;
+  font-size:18px;
 }
 
 .event-view-description {
@@ -102,11 +107,11 @@
 }
 
 .event-view-date {
-
+  font-weight: bold;
 }
 
 .event-view-location {
-
+  font-weight:bold;
 }
 
 .repeat-fade.ng-enter,

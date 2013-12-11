@@ -170,21 +170,17 @@ function WomCon($scope, $modal) {
     var modalInstance = $modal.open({
       templateUrl: 'createAccount.html',
       windowClass: 'newAccountModal',
-      controller: CreateAccountCon
+      controller: CreateAccountCon,
+      resolve: {
+        users: function() {
+          return $scope.users;
+        }
+      }
     });
 
     modalInstance.result.then(function (user) {
       // this would be validated on the backend if it were a real site, not the frontend
       // password would also be hashed and then sent, and compared to a hashed pw
-      user.email = user.email.toLowerCase();
-      user.password = user.password.toLowerCase();
-      for (var i = 0; i < $scope.users.length; i++) {
-        if($scope.users[i].email == user.email)
-        {
-          alert("This email is already in use! Try again.");
-          return;
-        }
-      };
       
       console.log('user created!');
       $scope.users.push(user);
@@ -198,24 +194,16 @@ function WomCon($scope, $modal) {
     var modalInstance = $modal.open({
       templateUrl: 'login.html',
       windowClass: 'loginModal',
-      controller: LoginCon
+      controller: LoginCon,
+      resolve: {
+        users: function() {
+          return $scope.users;
+        }
+      }
     });
 
     modalInstance.result.then(function (user) {
-
-      // this would be validated on the backend if it were a real site, not the frontend
-      // password would also be hashed and then sent, and compared to a hashed pw
-      user.email = user.email.toLowerCase();
-      user.password = user.password.toLowerCase();
-      for (var i = 0; i < $scope.users.length; i++) {
-        if($scope.users[i].email == user.email && $scope.users[i].password == user.password)
-        {
-          $scope.currentUser = user;
-          return;
-        }
-      }
-
-      alert("Error validating email/password combination.");
+      $scope.currentUser = user;
     }, function () {
       // $log.info('Modal dismissed at: ' + new Date());
     });
@@ -292,12 +280,25 @@ function EventModalCon($scope, $modalInstance, user, event, colors) {
   };
 }
 
-function LoginCon($scope, $modalInstance) {
+function LoginCon($scope, $modalInstance, users) {
+  $scope.users = users;
   $scope.user = {email:'', password:''};
   $scope.emailAction = '@brown.edu';
+  $scope.invalidLogin = false;
 
   $scope.ok = function () {
-    $modalInstance.close($scope.user);
+    // this would be validated on the backend if it were a real site, not the frontend
+      // password would also be hashed and then sent, and compared to a hashed pw
+      $scope.user.email = $scope.user.email.toLowerCase();
+      $scope.user.password = $scope.user.password.toLowerCase();
+      for (var i = 0; i < $scope.users.length; i++) {
+        if($scope.users[i].email == $scope.user.email && $scope.users[i].password == $scope.user.password)
+        {
+          $modalInstance.close($scope.user);
+          return;
+        }
+      }
+    $scope.invalidLogin = true;
   };
 
   $scope.close = function () {
@@ -305,11 +306,22 @@ function LoginCon($scope, $modalInstance) {
   };
 }
 
-function CreateAccountCon($scope, $modalInstance) {
+function CreateAccountCon($scope, $modalInstance, users) {
+  $scope.users = users;
   $scope.user = {email:'', password:''};
   $scope.emailAction = '@brown.edu';
+  $scope.invalidEmail = false;
 
   $scope.ok = function () {
+    $scope.user.email = $scope.user.email.toLowerCase();
+      $scope.user.password = $scope.user.password.toLowerCase();
+      for (var i = 0; i < $scope.users.length; i++) {
+        if($scope.users[i].email == $scope.user.email)
+        {
+          $scope.invalidEmail = true;
+          return;
+        }
+      };
     $modalInstance.close($scope.user);
   };
 
