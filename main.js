@@ -93,9 +93,6 @@ function WomCon($scope, $modal) {
       var start = new Date();
       start.setDate(start.getDate()+2);
 
-console.log(event.date.getTime());
-console.log(start.getTime());
-console.log(event.date.getTime() >= start.getTime());
       if(event.date.getTime() >= start.getTime())
         return true;
       else
@@ -179,6 +176,7 @@ console.log(event.date.getTime() >= start.getTime());
     modalInstance.result.then(function (newEvent) {
       newEvent.owner = $scope.currentUser.email;
       $scope.events.push(newEvent);
+      console.log(newEvent.date.getHours());
     }, function () {
       // $log.info('Modal dismissed at: ' + new Date());
     });
@@ -350,8 +348,7 @@ function CreateAccountCon($scope, $modalInstance, users) {
 
 function ShoutModalCon($scope, $modalInstance) {
 
-  $scope.editedEvent = {};
-  $scope.editedEvent.categories = [];
+  $scope.editedEvent = {imageLocation:'', description:'', categories:[], name:"", date:new Date(), time:new Date(), endDate:new Date(), endTime:new Date(), location:"", owner:''};
   $scope.tooManyCategories = false;
   $scope.tooFewCategories = true;
 
