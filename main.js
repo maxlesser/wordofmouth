@@ -3,7 +3,10 @@ angular.module('myApp', ['ngAnimate', 'ui.bootstrap', 'omr.angularFileDnD']);
 function WomCon($scope, $modal) {
 
   $scope.events = [
-            {imageLocation:'http://www.jaapsch.net/puzzles/images/square1.jpg', description:'this is a test event! it is being used for test purposes.', categories:['talks', 'sports'], name:"Acorns, Yo!", date:new Date(), time:new Date(), endDate:new Date(), endTime:new Date(), location:"LOCATION", owner:'wheels'},
+            {imageLocation:'http://www.jaapsch.net/puzzles/images/square1.jpg', description:'this is a test event! it is being used for test purposes.', categories:['talks', 'sports'], name:"Acorns, Yo!", date:new Date("December 11, 2013 13:14:00"), time:new Date(), endDate:new Date(), endTime:new Date(), location:"LOCATION", owner:'wheels'},
+
+            {imageLocation:'http://www.jaapsch.net/puzzles/images/square1.jpg', description:'this is a test event! it is being used for test purposes.', categories:['talks', 'sports'], name:"Acorns, Yo!", date:new Date("December 12, 2013 13:14:00"), time:new Date(), endDate:new Date(), endTime:new Date(), location:"LOCATION", owner:'wheels'},
+            {imageLocation:'http://www.jaapsch.net/puzzles/images/square1.jpg', description:'this is a test event! it is being used for test purposes.', categories:['talks', 'sports'], name:"Acorns, Yo!", date:new Date("December 14, 2013 13:14:00"), time:new Date(), endDate:new Date(), endTime:new Date(), location:"LOCATION", owner:'wheels'},
 
 
 
@@ -43,6 +46,47 @@ function WomCon($scope, $modal) {
       $scope.searchFilter.push(category);
     else
       $scope.searchFilter.splice($scope.searchFilter.indexOf(category), 1);
+  }
+
+  $scope.todayFilter = function(event) {
+    return function(event) {
+      var start = new Date();
+      var end = new Date();
+      end.setDate(end.getDate()+1);
+
+      console.log(event.date.getMilliseconds());
+      console.log(start.getMilliseconds());
+      if(event.date.getTime() >= start.getTime() && event.date.getTime() < end.getTime())
+        return true;
+      else
+        return false;
+    }
+  }
+  $scope.tomorrowFilter = function(event) {
+    return function(event) {
+      var start = new Date();
+      start.setDate(start.getDate()+1);
+      var end = new Date();
+      end.setDate(end.getDate()+2);
+
+      console.log(event.date.getMilliseconds());
+      console.log(start.getMilliseconds());
+      if(event.date.getTime() >= start.getTime() && event.date.getTime() < end.getTime())
+        return true;
+      else
+        return false;
+    }
+  }
+  $scope.LaterFilter = function(event) {
+    return function(event) {
+      var start = new Date();
+      start.setDate(start.getDate()+2);
+
+      if(event.date.getTime() >= start.getTime())
+        return true;
+      else
+        return false;
+    }
   }
 
   $scope.logout = function() {

@@ -70,9 +70,8 @@
 
 				<div id='events-div'>
 					<h1>Today</h1>
-
 					<div class="row">
-						<div class="col-xs-6 col-md-3 repeat-fade col" ng-repeat="event in events | filter:search | filter:myFilter(event) | orderBy:date track by $index">
+						<div class="col-xs-6 col-md-3 repeat-fade col" ng-repeat="event in events | filter:todayFilter(event) | filter:search | filter:myFilter(event) | orderBy:date track by $index">
 					    	<div class="thumbnail" ng-mouseenter="showOverlay(event)" ng-mouseleave="hideOverlay(event)" ng-click="openEventModal(event)">
 					    		<a class="thumbnail inner-thumbnail" href='#'>
 					    			<img src="{{event.imageLocation}}"/>
@@ -89,6 +88,51 @@
 									<div ng-repeat="category in event.categories" style='width:{{(3-event.categories.length)*50}}%; float:left; border-style:solid; border-width:1px;border-color:WHITE;background-color:{{categoryColors[category]}}; height:8px;'/>
 								</div>
 					    	</div>
+						</div>
+					</div>
+				</div>
+					<h1>Tomorrow</h1>
+						<div class="row">
+							<div class="col-xs-6 col-md-3 repeat-fade col" ng-repeat="event in events | filter:tomorrowFilter(event) | filter:search | filter:myFilter(event) | orderBy:date track by $index">
+						    	<div class="thumbnail" ng-mouseenter="showOverlay(event)" ng-mouseleave="hideOverlay(event)" ng-click="openEventModal(event)">
+						    		<a class="thumbnail inner-thumbnail" href='#'>
+						    			<img src="{{event.imageLocation}}"/>
+						    		</a>
+						    		<div class="thumbnail inner-thumbnail event-overlay col-xs-12 col-md-12 show-fade" ng-show="event.overlay">
+						    			<div class="event-details"> 
+							    			<span class="event-details-name">{{event.name}}</span>
+		                					<span class="event-details-date">{{event.date}}</span>
+		                					<span class="event-details-location">{{event.location}}</span>
+		                					<span class="event-details-description">{{event.description}}</span>
+		                				</div>
+		            				</div>
+		            				<div>
+										<div ng-repeat="category in event.categories" style='width:{{(3-event.categories.length)*50}}%; float:left; border-style:solid; border-width:1px;border-color:WHITE;background-color:{{categoryColors[category]}}; height:8px;'/>
+									</div>
+						    	</div>
+							</div>
+						</div>
+					</div>
+						<h1>Later</h1>
+						<div class="row">
+							<div class="col-xs-6 col-md-3 repeat-fade col" ng-repeat="event in events | filter:laterFilter(event) | filter:search | filter:myFilter(event) | orderBy:date track by $index">
+						    	<div class="thumbnail" ng-mouseenter="showOverlay(event)" ng-mouseleave="hideOverlay(event)" ng-click="openEventModal(event)">
+						    		<a class="thumbnail inner-thumbnail" href='#'>
+						    			<img src="{{event.imageLocation}}"/>
+						    		</a>
+						    		<div class="thumbnail inner-thumbnail event-overlay col-xs-12 col-md-12 show-fade" ng-show="event.overlay">
+						    			<div class="event-details"> 
+							    			<span class="event-details-name">{{event.name}}</span>
+		                					<span class="event-details-date">{{event.date}}</span>
+		                					<span class="event-details-location">{{event.location}}</span>
+		                					<span class="event-details-description">{{event.description}}</span>
+		                				</div>
+	                				</div>
+	                				<div>
+										<div ng-repeat="category in event.categories" style='width:{{(3-event.categories.length)*50}}%; float:left; border-style:solid; border-width:1px;border-color:WHITE;background-color:{{categoryColors[category]}}; height:8px;'/>
+									</div>
+						    	</div>
+							</div>
 						</div>
 					</div>
 				</div>
