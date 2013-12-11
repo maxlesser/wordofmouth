@@ -144,16 +144,16 @@
 						<!-- VIEW MODE -->
 						<div class="view-mode" ng-hide="editMode">
 					        <div class="modal-header">
-					            <h3>{{event.name}}</h3>
+					            <h2>{{event.name}}</h2>
 					        </div>
 					        <div class="modal-body" style='display:inline-block'>
 					        	<div style='float:left;'>
 						        	<img width='300px' height='300px' src="{{event.imageLocation}}"/>
 					        	</div>
 					        	<div style='overflow:hidden;'>
-						            <p><h3>{{event.description}}</h3></p>
-						            <p><h3>{{event.location}}</h3></p>
-						            <p><h3>{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} at {{event.time.getHours()}}:{{event.time.getMinutes()}}</h3></p>
+						            <p class="event-view-description">{{event.description}}</p>
+						            <p class="event-view-date">{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} at {{event.time.getHours()}}:{{event.time.getMinutes()}}</p>
+						            <p class="event-view-location">{{event.location}}</p>
 					            </div>
 					        	<div class="clear"></div>
 				            </div>

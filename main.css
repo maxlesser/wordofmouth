@@ -60,26 +60,53 @@
 
 .event-details {
   text-align: center;
+}
+
+.event-details-name,.event-details-date,.event-details-location,
+.event-details-info {
   color: #fff;
   font-size: 14px;
+  position:relative;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 .event-details-name {
-  font-size: 16px;
+  font-size: 20px;
   margin-top: 25%;
 }
 
 .event-details-date {
-  top: 25%;
+  margin-top: 8%;
 }
 
 .event-details-location{
-  top: 40%;
+  margin-top: 5%;
 }
 
 .event-details-info {
-  bottom: 15%;
+  margin-left:auto;
+  margin-right:auto;
+  width:100%;
+  position:absolute;
+  padding-top: 10%;
   font-size:12px;
+}
+
+.event-view-description, .event-view-date, .event-view-location {
+  margin-right: 8%;
+}
+
+.event-view-description {
+
+}
+
+.event-view-date {
+
+}
+
+.event-view-location {
+
 }
 
 .repeat-fade.ng-enter,
