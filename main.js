@@ -3,7 +3,17 @@ angular.module('myApp', ['ngAnimate', 'ui.bootstrap', 'omr.angularFileDnD']);
 function WomCon($scope, $modal) {
 
   $scope.events = [
-            {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', description:'this is a test event! it is being used for test purposes.', categories:['talk', 'sports'], name:"1", date:new Date(), time:new Date(), location:"LOCATION", owner:'wheels'},
+            {imageLocation:'http://www.jaapsch.net/puzzles/images/square1.jpg', description:'this is a test event! it is being used for test purposes.', categories:['talks', 'sports'], name:"Acorns, Yo!", date:new Date(), time:new Date(), endDate:new Date(), endTime:new Date(), location:"LOCATION", owner:'wheels'},
+
+
+
+            {imageLocation:'http://flyingmeat.s3.amazonaws.com/acorn4/images/Acorn256.png', description:'this is a test event! it is being used for test purposes.', categories:['talks', 'sports'], name:"Acorns, Yo!", date:new Date(), time:new Date(), location:"LOCATION", owner:'wheels'},
+            {imageLocation:'http://icons.iconarchive.com/icons/pixelresort/itunes-10/256/Square-Double-Rainbow-icon.png', description:'this is a test event! it is being used for test purposes.', categories:['talks', 'sports'], name:"Acorns, Yo!", date:new Date(), time:new Date(), location:"LOCATION", owner:'wheels'},
+            {imageLocation:'http://foto.hrsstatic.com/fotos/3/3/256/256/80/FFFFFF/http%3A%2F%2Ffoto-origin.hrsstatic.com%2Ffoto%2F0%2F6%2F5%2F6%2F%2Fteaser_065618.jpg/blao3QhP0r7vcnbA8Z7aUw%3D%3D/1020,678/6/Doubletree_STES_by_Hilton_Times_Square-New_York_City-Aussenansicht-2-65618.jpg', description:'this is a test event! it is being used for test purposes.', categories:['sports'], name:"Acorns, Yo!", date:new Date(), time:new Date(), location:"LOCATION", owner:'wheels'},
+            {imageLocation:'http://fc02.deviantart.net/fs70/f/2013/008/4/d/square_icon___gta_iv_by_jmastexgp-d5q7lpo.png', description:'this is a test event! it is being used for test purposes.', categories:['talks', 'sports'], name:"Acorns, Yo!", date:new Date(), time:new Date(), location:"LOCATION", owner:'wheels'},
+            {imageLocation:'http://wordsbecomesuperflous.files.wordpress.com/2013/11/g-square.jpg?w=256', description:'this is a test event! it is being used for test purposes.', categories:['talks', 'sports'], name:"Acorns, Yo!", date:new Date(), time:new Date(), location:"LOCATION", owner:'wheels'},
+            {imageLocation:'http://foto.hrsstatic.com/fotos/0/3/256/256/80/FFFFFF/http%3A%2F%2Ffoto-origin.hrsstatic.com%2Ffoto%2F0%2F2%2F4%2F3%2F024337%2F024337_v_3147357.jpg/F4oDewDKfpxTTgnBVXIw%2BA%3D%3D/3024,1705/6/Carlton_Square_Hotel-Haarlem-Terrasse-1-24337.jpg', description:'this is a test event! it is being used for test purposes.', categories:['talks', 'sports'], name:"Acorns, Yo!", date:new Date(), time:new Date(), location:"LOCATION", owner:'wheels'},
+            {imageLocation:'http://b.vimeocdn.com/ps/292/228/2922284_300.jpg', description:'this is a test event! it is being used for test purposes.', categories:['arts', 'causes'], name:"Acorns, Yo!", date:new Date(), time:new Date(), location:"LOCATION", owner:'wheels'},
             ];
   $scope.users = [
             {email:'wheels', password:'max'}
@@ -74,14 +84,6 @@ function WomCon($scope, $modal) {
         document.getElementById('_start').className = '_start'; 
         document.getElementById('_end').className = '_end'; 
         addthisevent.refresh();
-
-        document.getElementsByClassName('btn pull-right')[0].className = 'pull-right glyphicon glyphicon-chevron-right'; 
-        document.getElementsByClassName('btn pull-left')[0].className = 'pull-left glyphicon glyphicon-chevron-left';
-
-        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
-        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
-        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
-        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
       }, 1);
     });
 
@@ -103,7 +105,13 @@ function WomCon($scope, $modal) {
 
         document.getElementsByClassName('btn pull-right')[0].className = 'pull-right glyphicon glyphicon-chevron-right'; 
         document.getElementsByClassName('btn pull-left')[0].className = 'pull-left glyphicon glyphicon-chevron-left';
+        document.getElementsByClassName('btn pull-right')[0].className = 'pull-right glyphicon glyphicon-chevron-right'; 
+        document.getElementsByClassName('btn pull-left')[0].className = 'pull-left glyphicon glyphicon-chevron-left';
 
+        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
+        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
+        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
+        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
         document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
         document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
         document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
@@ -197,6 +205,29 @@ function EventModalCon($scope, $modalInstance, user, event, colors) {
     $scope.event.date.setHours($scope.event.time.getHours());
     $scope.event.date.setMinutes($scope.event.time.getMinutes());
     $scope.editMode = false;
+
+    setTimeout(function() {
+        document.getElementById('_name').className = '_summary'; 
+        document.getElementById('_description').className = '_description'; 
+        document.getElementById('_location').className = '_location'; 
+        document.getElementById('_start').className = '_start'; 
+        document.getElementById('_end').className = '_end'; 
+        addthisevent.refresh();
+
+        document.getElementsByClassName('btn pull-right')[0].className = 'pull-right glyphicon glyphicon-chevron-right'; 
+        document.getElementsByClassName('btn pull-left')[0].className = 'pull-left glyphicon glyphicon-chevron-left';
+        document.getElementsByClassName('btn pull-right')[0].className = 'pull-right glyphicon glyphicon-chevron-right'; 
+        document.getElementsByClassName('btn pull-left')[0].className = 'pull-left glyphicon glyphicon-chevron-left';
+
+        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
+        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
+        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
+        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
+        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
+        document.getElementsByClassName('icon-chevron-up')[0].className = 'glyphicon glyphicon-chevron-up'; 
+        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
+        document.getElementsByClassName('icon-chevron-down')[0].className = 'glyphicon glyphicon-chevron-down';
+      }, 1);
   };
 
   $scope.toggle = function(category) {

@@ -85,7 +85,9 @@
 	                					<span class="event-details-description">{{event.description}}</span>
 	                				</div>
                 				</div>
-								<div ng-repeat="category in event.categories" style='border-style:solid;border-width:1px;border-color:WHITE;background-color:{{categoryColors[category]}}; width:100%; height:8px;'/>
+                				<div>
+									<div ng-repeat="category in event.categories" style='width:{{(3-event.categories.length)*50}}%; float:left; border-style:solid; border-width:1px;border-color:WHITE;background-color:{{categoryColors[category]}}; height:8px;'/>
+								</div>
 					    	</div>
 						</div>
 					</div>
@@ -107,7 +109,7 @@
 					        	<div style='overflow:hidden;'>
 						            <p><h3>{{event.description}}</h3></p>
 						            <p><h3>{{event.location}}</h3></p>
-						            <p><h3>{{event.date.getMonth()}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} at {{event.time.getHours()}}:{{event.time.getMinutes()}}</h3></p>
+						            <p><h3>{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} at {{event.time.getHours()}}:{{event.time.getMinutes()}}</h3></p>
 					            </div>
 					        	<div class="clear"></div>
 				            </div>
@@ -119,13 +121,14 @@
 						        <a href="http://example.com/link-to-your-event" title="Add to Calendar" class="addthisevent">
 								    Add to Calendar
 								    <span class="_start" id='_start'>{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} {{event.time.getHours()}}:{{event.time.getMinutes()}}</span>
-								    <span class="_end" id='_end'>{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} {{event.time.getHours()+2}}:{{event.time.getMinutes()}}</span>
+								    <span class="_end" id='_end'>{{event.endDate.getMonth()+1}}-{{event.endDate.getDate()}}-{{event.endDate.getFullYear()}} {{event.endTime.getHours()}}:{{event.endTime.getMinutes()}}</span>
 								    <span class="_zonecode">15</span>
 								    <span class="_summary" id='_name'>{{event.name}}</span>
 								    <span class="_description" id='_description'>{{event.description}}</span>
 								    <span class="_location" id='_location'>{{event.location}}</span>
-								    <span class="_date_format">DD/MM/YYYY</span>
+								    <span class="_date_format">MM/DD/YYYY</span>
 								</a>
+
 					        	<button class="btn btn-warning" ng-click="enterEditMode()" ng-show="event.owner == currentUser.email">Edit My Event</button>
 					            <button class="btn btn-primary" ng-click="close()">Close</button>
 					        </div>
@@ -136,7 +139,7 @@
 					            <h3><p>Event Name &nbsp;<input type="event.name" ng-model='editedEvent.name'></p></h3>
 					        </div>
 					        <div class="modal-body" style='display:inline-block'>
-					        	<div style='float:left; padding-right:40px'>
+					        	<div style='float:left; left:100px; padding-right:40px'>
 					        		<button class='btn btn-warning' ng-click="clearImage()" style="float: right;" ng-show="editedEvent.imageLocation">Clear Image</button>
 					        		<p>
 	        				            <div class="dropzone show-fade" file-dropzone="[image/png, image/jpeg, image/gif]" file="editedEvent.imageLocation" file-name="imageFileName" data-max-file-size="3" ng-hide="editedEvent.imageLocation">
@@ -148,19 +151,26 @@
 	        				            </div>
 	        				        </p>
 					        		<p>
-						        		Date
+						        		<p><b>Start Date</b></p>
 									    <div class="well well-small" ng-model="editedEvent.date" style="display:inline-block;">
 									        <datepicker show-weeks="false"></datepicker>
 									    </div>
+									    <p><b>Start Time</b></p>
+								        <div ng-model="editedEvent.time" class="well well-small" style="display:inline-block;">
+										    <timepicker hour-step="1" minute-step="1"></timepicker>
+										</div>
 								    </p>
 								</div>
 								<div style='overflow:hidden'>
-									Description<textarea type="event.description" class="form-control" rows="4" ng-model='editedEvent.description'></textarea><br>
-									Location<textarea type="event.location" class="form-control" rows="1" ng-model='editedEvent.location'></textarea><br>
-
+									<p><b>Description</b></p><textarea type="event.description" class="form-control" rows="4" ng-model='editedEvent.description'></textarea><br>
+									<b>Location</b><textarea type="event.location" class="form-control" rows="1" ng-model='editedEvent.location'></textarea><br>
 								    <p>
-									    Time
-								        <div ng-model="editedEvent.time" ng-model="editedEvent.time" class="well well-small" style="display:inline-block;">
+									    <p><b>End Date</b></p>
+									    <div class="well well-small" ng-model="editedEvent.endDate" style="display:inline-block;">
+									        <datepicker show-weeks="false"></datepicker>
+									    </div>
+									    <p><b>End Time</b></p>
+								        <div ng-model="editedEvent.endTime" class="well well-small" style="display:inline-block;">
 										    <timepicker hour-step="1" minute-step="1"></timepicker>
 										</div>
 									</p>
@@ -197,35 +207,42 @@
 		    <script type="text/ng-template" id="shoutContent.html">
 		    	<div class="modal-dialog">
 		    		<div class="modal-content">
-				    	<div class="modal-header">
-				            <h3><p>Event Name &nbsp;<input ng-model='editedEvent.name'></p></h3>
+						<div class="modal-header">
+				            <h3><p>Event Name &nbsp;<input type="event.name" ng-model='editedEvent.name'></p></h3>
 				        </div>
 				        <div class="modal-body" style='display:inline-block'>
-				        	<div style='float:left; padding-right:40px'>
+				        	<div style='float:left; left:100px; padding-right:40px'>
 				        		<button class='btn btn-warning' ng-click="clearImage()" style="float: right;" ng-show="editedEvent.imageLocation">Clear Image</button>
 				        		<p>
-						            <div class="dropzone show-fade" file-dropzone="[image/png, image/jpeg, image/gif]" file="editedEvent.imageLocation" file-name="imageFileName" data-max-file-size="3" ng-hide="editedEvent.imageLocation">
-						                <span>Drop Image Here</span>
-						            </div>
-						            <div class="thumbnail image-container show-fade" ng-show="editedEvent.imageLocation">
-					                	<img width="200px" height="200px" ng-src={{editedEvent.imageLocation}} />
-						                <span class="file-name">{{imageFileName}}</span>
-						            </div>
-						        </p>
+        				            <div class="dropzone show-fade" file-dropzone="[image/png, image/jpeg, image/gif]" file="editedEvent.imageLocation" file-name="imageFileName" data-max-file-size="3" ng-hide="editedEvent.imageLocation">
+        				                <span>Drop Image Here</span>
+        				            </div>
+        				            <div class="thumbnail image-container show-fade" ng-show="editedEvent.imageLocation">
+        			                	<img width="200px" height="200px" ng-src={{editedEvent.imageLocation}} />
+        				                <span class="file-name">{{imageFileName}}</span>
+        				            </div>
+        				        </p>
 				        		<p>
-					        		Date
+					        		<p><b>Start Date</b></p>
 								    <div class="well well-small" ng-model="editedEvent.date" style="display:inline-block;">
 								        <datepicker show-weeks="false"></datepicker>
 								    </div>
+								    <p><b>Start Time</b></p>
+							        <div ng-model="editedEvent.time" class="well well-small" style="display:inline-block;">
+									    <timepicker hour-step="1" minute-step="1"></timepicker>
+									</div>
 							    </p>
 							</div>
 							<div style='overflow:hidden'>
-								Description<textarea class="form-control" rows="4" ng-model='editedEvent.description'></textarea><br>
-								Location<textarea class="form-control" rows="1" ng-model='editedEvent.location'></textarea><br>
-
+								<p><b>Description</b></p><textarea type="event.description" class="form-control" rows="4" ng-model='editedEvent.description'></textarea><br>
+								<b>Location</b><textarea type="event.location" class="form-control" rows="1" ng-model='editedEvent.location'></textarea><br>
 							    <p>
-								    Time
-							        <div ng-model="editedEvent.time" ng-model="editedEvent.time" class="well well-small" style="display:inline-block;">
+								    <p><b>End Date</b></p>
+								    <div class="well well-small" ng-model="editedEvent.endDate" style="display:inline-block;">
+								        <datepicker show-weeks="false"></datepicker>
+								    </div>
+								    <p><b>End Time</b></p>
+							        <div ng-model="editedEvent.endTime" class="well well-small" style="display:inline-block;">
 									    <timepicker hour-step="1" minute-step="1"></timepicker>
 									</div>
 								</p>
@@ -233,27 +250,27 @@
 								<div class="alert alert-danger show-fade" ng-show="tooManyCategories">Select a maximum of 2 categories.</div>
 								<p>Categories (choose 1 or 2)</p>
 								<div class="btn-group btn-group-justified container" data-toggle="buttons">
-								  <label class="btn btn-primary btn-sm" ng-click="toggle('theater')" style='width:20%;'>
-								    <input type="checkbox">Theater
+								  <label class="btn btn-primary btn-sm" ng-click="toggle('arts')" style='width:20%;'>
+								    <input type="checkbox">Arts
 								  </label>
-								  <label class="btn btn-success btn-sm" ng-click="toggle('talk')" style='width:20%;'>
-								    <input type="checkbox">Talks
+								  <label class="btn btn-success btn-sm" ng-click="toggle('causes')" style='width:20%;'>
+								    <input type="checkbox">Causes
 								  </label>
 								  <label class="btn btn-warning btn-sm" ng-click="toggle('social')" style='width:20%;'>
 								    <input type="checkbox">Social
 								  </label>
-								  <label class="btn btn-danger btn-sm" ng-click="toggle('music')" style='width:20%;'>
-								    <input type="checkbox">Music
-								  </label>
-								  <label class="btn btn-info btn-sm" ng-click="toggle('sports')" style='width:20%;'>
+								  <label class="btn btn-danger btn-sm" ng-click="toggle('sports')" style='width:20%;'>
 								    <input type="checkbox">Sports
+								  </label>
+								  <label class="btn btn-info btn-sm" ng-click="toggle('talks')" style='width:20%;'>
+								    <input type="checkbox">Talks
 								  </label>
 								</div>
 							</div>
 							<div class='clear'></div>
 				        <div class="modal-footer">
 				       		<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-				        	<button class="btn btn-danger" ng-click="submit()">Submit</button>
+				        	<button class="btn btn-danger" ng-click="submit()">Update Event</button>
 				        </div>
 				    </div>
 			    </div>
