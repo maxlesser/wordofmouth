@@ -38,7 +38,7 @@
 							<h3 ng-hide="currentUser.email == ''">Click here to post an event!</h3>
 
 							<div style='float:right'>
-								<button class='btn btn-lg' id='shout-button' ng-click="openShoutModal()" ng-hide="currentUser.email == ''">Shout!</button>
+								<button class='btn-blue btn-lg' id='shout-button' ng-click="openShoutModal()" ng-hide="currentUser.email == ''">Shout!</button>
 							</div>
 						</div>
 						<h1>Word of Mouth</h1>
@@ -159,7 +159,8 @@
 						        	</div>
 						        	<div style='overflow:hidden; text-align:right'>
 							            <h2>{{event.description}}</h2>
-							            <h2>{{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} at {{event.time.getHours()}}:{{event.time.getMinutes()}}</h2>
+							            <h2>From: {{event.date.getMonth()+1}}-{{event.date.getDate()}}-{{event.date.getFullYear()}} at {{event.time.getHours()}}:{{event.time.getMinutes()}}</h2>
+							            <h2>To: {{event.endDate.getMonth()+1}}-{{event.endDate.getDate()}}-{{event.endDate.getFullYear()}} at {{event.endTime.getHours()}}:{{event.endTime.getMinutes()}}</h2>
 							            <h2>{{event.location}}</h2>
 						            </div>
 						        	<div class="clear"></div>
@@ -322,7 +323,7 @@
 							<div class='clear'></div>
 				        <div class="modal-footer">
 				       		<button class="btn btn-red" ng-click="cancel()">Cancel</button>
-				        	<button class="btn btn-blue" ng-click="submit()">Update Event</button>
+				        	<button class="btn btn-blue" ng-click="submit()">Create Event</button>
 				        </div>
 				    </div>
 			    </div>
