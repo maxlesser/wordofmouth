@@ -8,7 +8,7 @@ function WomCon($scope, $modal) {
   $scope.users = [
             {email:'wheels', password:'max'}
           ];
-  $scope.categoryColors = {arts:"#5cb85c", causes:"#5bc0de", social:"#f0ad4e", sports:"#428bca", talks:"#d9534f"};
+  $scope.categoryColors = {arts:"#AEA2FA", causes:"#85C9E4", social:"#9E4746", sports:"#B4D967", talks:"#F7A359"};
   $scope.currentUser = {email:'', password:''};
 
   $scope.searchFilter = [];

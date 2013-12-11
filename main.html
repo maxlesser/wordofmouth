@@ -51,20 +51,20 @@
 				</div>
 				<br>
 				<div class="btn-group btn-group-justified container" data-toggle="buttons">
-				  <label class="btn btn-primary btn-lg" ng-click="toggleFilter('theater')" style='width:20%;'>
-				    <input type="checkbox">Theater
+				  <label class="btn btn-purple btn-lg" ng-click="toggleFilter('arts')" style='width:20%;color:WHITE;'>
+				    <input type="checkbox">Arts
 				  </label>
-				  <label class="btn btn-success btn-lg" ng-click="toggleFilter('talk')" style='width:20%;'>
-				    <input type="checkbox">Talks
+				  <label class="btn btn-blue btn-lg" ng-click="toggleFilter('causes')" style='width:20%;color:WHITE;'>
+				    <input type="checkbox">Causes
 				  </label>
-				  <label class="btn btn-warning btn-lg" ng-click="toggleFilter('social')" style='width:20%;'>
+				  <label class="btn btn-red btn-lg" ng-click="toggleFilter('social')" style='width:20%;color:WHITE;'>
 				    <input type="checkbox">Social
 				  </label>
-				  <label class="btn btn-danger btn-lg" ng-click="toggleFilter('music')" style='width:20%;'>
-				    <input type="checkbox">Music
-				  </label>
-				  <label class="btn btn-info btn-lg" ng-click="toggleFilter('sports')" style='width:20%;'>
+				  <label class="btn btn-green btn-lg" ng-click="toggleFilter('sports')" style='width:20%;color:WHITE;'>
 				    <input type="checkbox">Sports
+				  </label>
+				  <label class="btn btn-orange btn-lg" ng-click="toggleFilter('talks')" style='width:20%;color:WHITE;'>
+				    <input type="checkbox">Talks
 				  </label>
 				</div>
 
@@ -82,7 +82,7 @@
 						    			<span class="event-details-name">{{event.name}}</span>
 	                					<span class="event-details-date">{{event.date}}</span>
 	                					<span class="event-details-location">{{event.location}}</span>
-	                					<span class="event-details-description">{{event.description}}</span>
+	                					<span class="event-details-info">(Click for more details)</span>
 	                				</div>
                 				</div>
 								<div ng-repeat="category in event.categories" style='border-style:solid;border-width:1px;border-color:WHITE;background-color:{{categoryColors[category]}}; width:100%; height:8px;'/>
@@ -168,19 +168,19 @@
 									<div class="alert alert-danger show-fade" ng-show="tooManyCategories">Select a maximum of 2 categories.</div>
 									<p>Categories (choose 1 or 2)</p>
 									<div class="btn-group btn-group-justified container" data-toggle="buttons">
-									  <label class="btn btn-primary btn-sm" ng-click="toggle('arts')" style='width:20%;'>
+									  <label class="btn btn-purple btn-sm" ng-click="toggle('arts')" style='width:20%;color:WHITE;'>
 									    <input type="checkbox">Arts
 									  </label>
-									  <label class="btn btn-success btn-sm" ng-click="toggle('causes')" style='width:20%;'>
+									  <label class="btn btn-blue btn-sm" ng-click="toggle('causes')" style='width:20%;color:WHITE;'>
 									    <input type="checkbox">Causes
 									  </label>
-									  <label class="btn btn-warning btn-sm" ng-click="toggle('social')" style='width:20%;'>
+									  <label class="btn btn-red btn-sm" ng-click="toggle('social')" style='width:20%;color:WHITE;'>
 									    <input type="checkbox">Social
 									  </label>
-									  <label class="btn btn-danger btn-sm" ng-click="toggle('sports')" style='width:20%;'>
+									  <label class="btn btn-green btn-sm" ng-click="toggle('sports')" style='width:20%;color:WHITE;'>
 									    <input type="checkbox">Sports
 									  </label>
-									  <label class="btn btn-info btn-sm" ng-click="toggle('talks')" style='width:20%;'>
+									  <label class="btn btn-orange btn-sm" ng-click="toggle('talks')" style='width:20%;color:WHITE;'>
 									    <input type="checkbox">Talks
 									  </label>
 									</div>
@@ -233,20 +233,20 @@
 								<div class="alert alert-danger show-fade" ng-show="tooManyCategories">Select a maximum of 2 categories.</div>
 								<p>Categories (choose 1 or 2)</p>
 								<div class="btn-group btn-group-justified container" data-toggle="buttons">
-								  <label class="btn btn-primary btn-sm" ng-click="toggle('theater')" style='width:20%;'>
-								    <input type="checkbox">Theater
+								  <label class="btn btn-purple btn-sm" ng-click="toggle('arts')" style='width:20%;color:WHITE;'>
+								    <input type="checkbox">Arts
 								  </label>
-								  <label class="btn btn-success btn-sm" ng-click="toggle('talk')" style='width:20%;'>
-								    <input type="checkbox">Talks
+								  <label class="btn btn-blue btn-sm" ng-click="toggle('causes')" style='width:20%;color:WHITE;'>
+								    <input type="checkbox">Causes
 								  </label>
-								  <label class="btn btn-warning btn-sm" ng-click="toggle('social')" style='width:20%;'>
+								  <label class="btn btn-red btn-sm" ng-click="toggle('social')" style='width:20%;color:WHITE;'>
 								    <input type="checkbox">Social
 								  </label>
-								  <label class="btn btn-danger btn-sm" ng-click="toggle('music')" style='width:20%;'>
-								    <input type="checkbox">Music
-								  </label>
-								  <label class="btn btn-info btn-sm" ng-click="toggle('sports')" style='width:20%;'>
+								  <label class="btn btn-green btn-sm" ng-click="toggle('sports')" style='width:20%;color:WHITE;'>
 								    <input type="checkbox">Sports
+								  </label>
+								  <label class="btn btn-orange btn-sm" ng-click="toggle('talks')" style='width:20%;color:WHITE;'>
+								    <input type="checkbox">Talks
 								  </label>
 								</div>
 							</div>
